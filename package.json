@@ -1,0 +1,17 @@
+{
+  "name": "javascript-notes",
+  "version": "1.0.0",
+  "description": "Comprehensive JavaScript notes with examples",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "basics": "node 01-basics/index.js",
+    "functions": "node 02-functions-scope/index.js",
+    "advanced": "node 03-advanced/index.js",
+    "dom": "node 04-dom-browser/index.js",
+    "test": "node --test"
+  },
+  "keywords": ["javascript", "notes", "learning", "examples"],
+  "author": "",
+  "license": "ISC"
+}
