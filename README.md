@@ -203,3 +203,4 @@ ISC
 Happy Learning! 🚀
 
 **Remember**: The best way to learn JavaScript is by writing code. Don't just read - experiment, break things, and build projects!
+# javascript-notes
