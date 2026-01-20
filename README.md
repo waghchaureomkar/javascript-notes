@@ -10,6 +10,22 @@ JavaScript Notes/
 ├── 02-functions-scope/     # Functions, Closures, Scope
 ├── 03-advanced/            # Async, Promises, ES6+
 ├── 04-dom-browser/         # DOM Manipulation, Browser APIs
+├── 05-data-structures/     # DSA - Data Structures
+│   ├── arrays/
+│   ├── linked-lists/
+│   ├── stacks-queues/
+│   ├── trees/
+│   ├── graphs/
+│   ├── hash-tables/
+│   └── heaps/
+├── 06-algorithms/          # Algorithms & Problem Solving
+│   ├── sorting/
+│   ├── searching/
+│   ├── recursion/
+│   ├── dynamic-programming/
+│   ├── greedy/
+│   ├── two-pointers/
+│   └── sliding-window/
 ├── examples/               # Additional practice examples
 └── package.json
 ```
@@ -80,9 +96,123 @@ JavaScript Notes/
 - Geolocation API
 - Timers: `setTimeout`, `setInterval`
 
+### 5. Data Structures (05-data-structures/)
+
+#### Arrays
+- Array Operations (Insert, Delete, Search)
+- Two Sum, Maximum Subarray (Kadane's)
+- Move Zeros, Rotate Array
+- Remove Duplicates from Sorted Array
+- Best Time to Buy/Sell Stock
+- Prefix Sum, Sliding Window Maximum
+
+#### Linked Lists
+- Singly Linked List Implementation
+- Doubly Linked List
+- Reverse Linked List (Iterative & Recursive)
+- Find Middle (Slow-Fast Pointer)
+- Detect Cycle (Floyd's Algorithm)
+- Merge Two Sorted Lists
+- Remove Nth Node from End
+- Palindrome Linked List
+- Intersection of Two Lists
+
+#### Stacks & Queues
+- Stack Implementation (Array & Linked List)
+- Queue Implementation (Optimized)
+- Circular Queue, Deque
+- Valid Parentheses
+- Min Stack (Get Min in O(1))
+- Daily Temperatures (Next Greater Element)
+- Largest Rectangle in Histogram
+- Implement Stack using Queues
+
+#### Trees
+- Binary Tree Traversals (Inorder, Preorder, Postorder)
+- Level Order Traversal (BFS)
+- Binary Search Tree (Insert, Search, Delete)
+- Validate BST
+- Invert Binary Tree
+- Lowest Common Ancestor
+- Path Sum, Symmetric Tree
+- Diameter of Binary Tree
+- Kth Smallest in BST
+- Serialize/Deserialize Binary Tree
+- Trie (Prefix Tree)
+
+#### Graphs (Upcoming)
+- Graph Representations
+- BFS & DFS Traversals
+- Dijkstra's Algorithm
+- Topological Sort
+
+#### Hash Tables (Upcoming)
+- Hash Map Implementation
+- Hash Set
+- Collision Handling
+
+#### Heaps (Upcoming)
+- Min Heap & Max Heap
+- Priority Queue
+- Heap Sort
+
+### 6. Algorithms (06-algorithms/)
+
+#### Sorting Algorithms
+- **O(n²)**: Bubble Sort, Selection Sort, Insertion Sort
+- **O(n log n)**: Merge Sort, Quick Sort, Heap Sort
+- **O(n + k)**: Counting Sort, Radix Sort, Bucket Sort
+- Special Problems: Sort Colors, Merge Intervals, Kth Largest Element
+
+#### Searching Algorithms
+- Linear Search: O(n)
+- Binary Search: O(log n) (Iterative & Recursive)
+- Binary Search Variations:
+  - First/Last Occurrence
+  - Search in Rotated Array
+  - Find Peak Element
+  - Search in 2D Matrix
+- Jump Search, Interpolation Search
+- Exponential Search, Ternary Search
+- Advanced: Median of Two Sorted Arrays, K Closest Elements
+
+#### Recursion (Upcoming)
+- Basic Recursion Patterns
+- Backtracking Problems
+- Divide and Conquer
+
+#### Dynamic Programming
+- Fibonacci (Memoization & Tabulation)
+- Climbing Stairs
+- Coin Change (Min Coins & Count Ways)
+- 0/1 Knapsack Problem
+- Longest Common Subsequence (LCS)
+- Longest Increasing Subsequence (LIS)
+- Edit Distance (Levenshtein)
+- Word Break
+- House Robber (Linear & Circular)
+- Unique Paths (With/Without Obstacles)
+- Partition Equal Subset Sum
+- Maximum Product Subarray
+- Longest Palindromic Substring
+- Palindromic Substrings Count
+
+#### Greedy Algorithms (Upcoming)
+- Activity Selection
+- Huffman Coding
+- Fractional Knapsack
+
+#### Two Pointers (Upcoming)
+- Container With Most Water
+- 3Sum, 4Sum
+
+#### Sliding Window (Upcoming)
+- Maximum Sum Subarray
+- Longest Substring Without Repeating Characters
+
 ## How to Use
 
-### For Node.js Examples (Basics, Functions, Advanced)
+### For Node.js Examples (Basics, Functions, Advanced, DSA, Algorithms)
 
 1. Install dependencies (if any added later):
 ```bash
@@ -99,6 +229,17 @@ npm run functions
 
 # Run advanced JavaScript examples
 npm run advanced
+
+# Run DSA examples
+node 05-data-structures/arrays/index.js
+node 05-data-structures/linked-lists/index.js
+node 05-data-structures/stacks-queues/index.js
+node 05-data-structures/trees/index.js
+
+# Run Algorithm examples
+node 06-algorithms/sorting/index.js
+node 06-algorithms/searching/index.js
+node 06-algorithms/dynamic-programming/index.js
 ```
 
 3. Or run files directly:
@@ -145,6 +286,8 @@ open 04-dom-browser/index.html
 2. **Master Functions & Scope** - Learn closures, callbacks, and scope
 3. **Dive into Advanced** - Explore async programming and ES6+ features
 4. **Practice DOM** - Build interactive web applications
+5. **Learn Data Structures** - Arrays, Linked Lists, Stacks, Queues, Trees, Graphs
+6. **Master Algorithms** - Sorting, Searching, DP, Greedy, Recursion
 
 ## Examples Include
 
@@ -159,6 +302,11 @@ open 04-dom-browser/index.html
 - LocalStorage persistence
 - Interactive Todo application
 - Browser API demonstrations
+- Data Structure implementations (Arrays, Linked Lists, Stacks, Queues, Trees, BST, Trie)
+- Sorting algorithms (Bubble, Merge, Quick, Heap, Counting, Radix)
+- Searching algorithms (Binary Search, Search variations)
+- Dynamic Programming problems (Fibonacci, Knapsack, LCS, LIS, Edit Distance)
+- Common interview problems with test cases
 
 ## Tips for Learning
 
@@ -189,6 +337,15 @@ After going through the notes, try these exercises:
 2. **Functions**: Create a function that implements memoization
 3. **Advanced**: Build a promise-based data fetching utility
 4. **DOM**: Create a fully functional Todo app with filters and localStorage
+5. **Data Structures**:
+   - Implement a LRU Cache using HashMap and Doubly Linked List
+   - Build a file system using Trees
+   - Create a browser history using Stack
+6. **Algorithms**:
+   - Solve Two Sum, Three Sum problems
+   - Implement Quick Sort and Merge Sort
+   - Solve Longest Palindromic Substring
+   - Practice top 50 LeetCode questions
 
 ## Contributing
 
