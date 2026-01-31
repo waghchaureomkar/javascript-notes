@@ -31,6 +31,20 @@ JavaScript Notes/
 │   ├── memoization/            # Caching expensive operations
 │   ├── object-manipulation/    # Deep copy, freeze, seal
 │   └── tricky-questions/       # 45+ output-based questions
+├── 08-react-nextjs/        # 🔥 React & Next.js - Complete Guide 🔥
+│   ├── 01-react-fundamentals/      # React basics, JSX, components
+│   ├── 02-react-hooks/             # All hooks + custom hooks
+│   ├── 03-react-advanced/          # Advanced patterns
+│   ├── 04-react-performance/       # Optimization techniques
+│   ├── 05-react-state-management/  # Context, Redux, Zustand
+│   ├── 06-react-routing/           # React Router
+│   ├── 07-react-forms/             # Form handling
+│   ├── 08-react-testing/           # Jest, RTL
+│   ├── 09-react-interview-prep/    # 🔥 React interview Q&A
+│   ├── 10-nextjs-fundamentals/     # Next.js basics, SSR/SSG/ISR
+│   ├── 11-nextjs-advanced/         # Advanced Next.js
+│   ├── 12-nextjs-interview-prep/   # 🔥 Next.js interviews
+│   └── TOPICS-PLAN.md              # Complete learning roadmap
 ├── examples/               # Additional practice examples
 └── package.json
 ```
@@ -315,6 +329,72 @@ JavaScript Notes/
 - Deep JavaScript understanding
 - FAANG-level preparation
 
+### 8. React & Next.js (08-react-nextjs/) 🔥 NEW SECTION 🔥
+
+**Complete React & Next.js preparation for modern web development**
+
+#### React Fundamentals (01-react-fundamentals/)
+- What is React? (Library vs Framework)
+- Virtual DOM vs Real DOM
+- JSX (JavaScript XML)
+- Components (Functional vs Class)
+- Props (Properties)
+- State (useState basics)
+- Events in React
+- Conditional Rendering
+- Lists and Keys
+- Forms (Controlled vs Uncontrolled)
+- Component Lifecycle
+- React 18 Features (Concurrent Rendering, Automatic Batching)
+- **Interview Probability: ⭐⭐⭐⭐⭐**
+
+#### React Hooks (02-react-hooks/) - MOST IMPORTANT!
+- **Basic Hooks**: useState, useEffect, useContext
+- **Additional Hooks**: useReducer, useCallback, useMemo, useRef
+- **React 18+ Hooks**: useId, useTransition, useDeferredValue
+- **Custom Hooks**: useLocalStorage, useFetch, useDebounce, useToggle, usePrevious
+- Rules of Hooks
+- Stale closure problem & solutions
+- Dependencies array deep dive
+- Complete working examples (useState, useEffect, Custom Hooks)
+- **Interview Probability: ⭐⭐⭐⭐⭐**
+
+#### React Interview Preparation (09-react-interview-prep/)
+- **Core Concepts**: Virtual DOM, Reconciliation, JSX, Props vs State
+- **Hooks Deep Dive**: All hooks with interview questions
+- **Performance**: React.memo, useCallback, useMemo, Code Splitting
+- **State Management**: Context API vs Redux
+- **Common Patterns**: HOC, Render Props, Compound Components
+- **Tricky Questions**: Output-based questions, common mistakes
+- **Coding Challenges**: Todo App, Debounced Search, Infinite Scroll
+- 25+ interview questions with detailed answers
+- **Interview Probability: ⭐⭐⭐⭐⭐**
+
+#### Next.js Fundamentals (10-nextjs-fundamentals/)
+- What is Next.js and why use it
+- App Router vs Pages Router (Next.js 13+)
+- File-based routing (static, dynamic, catch-all)
+- **Rendering Methods**:
+  - Server Components (default)
+  - Client Components ('use client')
+  - SSR (Server-Side Rendering)
+  - SSG (Static Site Generation)
+  - ISR (Incremental Static Regeneration)
+- Data Fetching strategies
+- Built-in components (Image, Link, Script, Font)
+- Layouts, Loading, and Error handling
+- API Routes
+- **Interview Probability: ⭐⭐⭐⭐⭐**
+
+**Why React/Next.js Section?**
+- React is the most in-demand frontend library
+- Next.js is the industry-standard React framework
+- Complete preparation from basics to advanced
+- Interview-focused content with Q&A
+- Production-ready patterns and best practices
+- 200+ topics with 14-week learning plan
+- Working code examples for all concepts
+
 ## How to Use
 
 ### For Node.js Examples (Basics, Functions, Advanced, DSA, Algorithms)
@@ -405,11 +485,19 @@ open 04-dom-browser/index.html
 7. **🔥 Interview Patterns** - Debouncing/Throttling, Memoization, Object manipulation
 8. **🔥 Tricky Questions** - Master 45+ output-based questions that interviewers love
 
+### ⚛️ React & Next.js (Weeks 7-14)
+9. **React Fundamentals** - Components, Props, State, JSX, Lifecycle
+10. **React Hooks** - All hooks, custom hooks, performance optimization
+11. **React Advanced** - Context API, HOC, Render Props, Patterns
+12. **Next.js** - SSR/SSG/ISR, App Router, Data Fetching, API Routes
+13. **Interview Prep** - React & Next.js interview questions and challenges
+
 ### 🚀 Recommended Order
 1. 01-basics → 02-functions-scope → 03-advanced → 04-dom-browser
 2. 05-data-structures → 06-algorithms
 3. **07-interview-prep** (Practice this throughout your preparation)
-4. Build projects combining all concepts
+4. **08-react-nextjs** - Complete React & Next.js preparation
+5. Build projects combining all concepts
 
 ## Examples Include
 
@@ -441,11 +529,12 @@ open 04-dom-browser/index.html
 ## 🔥 What Makes This Repository Special?
 
 ### Comprehensive Interview Coverage
-- **22,000+ lines** of educational content
-- **65+ interview questions** with detailed explanations
+- **30,000+ lines** of educational content
+- **100+ interview questions** with detailed explanations
 - **Production-ready patterns** (debouncing, throttling, memoization)
-- **Critical concepts** (Event Loop, Execution Context, CORS, Memory Leaks)
+- **Critical concepts** (Event Loop, Execution Context, CORS, Memory Leaks, Virtual DOM)
 - **45+ tricky questions** that interviewers actually ask
+- **Complete React & Next.js preparation** - 200+ topics
 
 ### Enhanced Core Topics
 ✅ **Execution Context & Call Stack** - Understand how JavaScript executes code
@@ -453,8 +542,12 @@ open 04-dom-browser/index.html
 ✅ **Prototypes & Inheritance** - Complete prototype chain understanding
 ✅ **CORS & Security** - Web security essentials
 ✅ **Memory Leaks** - Prevent and detect memory issues
+✅ **React Hooks** - All 12+ hooks with working examples
+✅ **Next.js Rendering** - SSR, SSG, ISR complete guide
 
 ### Interview-Focused Content
+
+**JavaScript:**
 - Debouncing & Throttling (with cancel/flush)
 - Memoization (including LRU Cache)
 - Object manipulation (shallow/deep copy, freeze/seal)
@@ -463,11 +556,23 @@ open 04-dom-browser/index.html
 - Closure patterns
 - Event Loop execution order
 
+**React/Next.js:**
+- Virtual DOM & Reconciliation
+- All React Hooks (useState, useEffect, useCallback, useMemo, etc.)
+- 13+ Custom Hooks with implementations
+- Performance optimization (React.memo, lazy loading)
+- Server Components vs Client Components
+- SSR/SSG/ISR strategies
+- 25+ React interview questions
+- Coding challenges (Todo, Search, Infinite Scroll)
+
 ### Real Performance Gains
 - Fibonacci: **1000x+ speedup** with memoization
 - API calls: **90% reduction** with debouncing
 - Memory usage: Proper **garbage collection** patterns
 - Browser performance: Throttling for **smooth UX**
+- React rendering: Proper memoization prevents unnecessary re-renders
+- Next.js: SSG provides instant page loads
 
 ## Additional Resources
 
