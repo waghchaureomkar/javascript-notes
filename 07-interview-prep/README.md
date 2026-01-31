@@ -22,6 +22,32 @@ While the previous sections (01-06) covered fundamentals, this section focuses o
 
 ## 📚 Topics Covered
 
+### 🎯 [All-in-One Quick Revision](./all-in-one/README.md) ⚡ NEW!
+
+**Complete Cheat Sheet for Last-Minute Revision**
+
+Perfect for:
+- ✅ Night before interview
+- ✅ Quick 30-minute review
+- ✅ All topics in one place
+- ✅ Copy-paste ready code
+- ✅ Must-know one-liners
+
+**Contains:**
+- All core concepts (Execution Context, Call Stack, Closures, Prototypes)
+- Debounce/Throttle implementations
+- Memoization with LRU Cache
+- Object manipulation (copy, freeze, seal)
+- Event Loop execution order
+- 20+ tricky question patterns
+- Common mistakes to avoid
+- Interview probability table
+- Quick revision checklist
+
+**Revision Time:** 2-3 hours for complete review
+
+---
+
 ### 1. [Debouncing & Throttling](./debouncing-throttling/README.md) 🔥🔥🔥
 
 **Most Asked Performance Pattern**
