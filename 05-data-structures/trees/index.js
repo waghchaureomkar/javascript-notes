@@ -180,6 +180,226 @@ class BinarySearchTree {
     }
 }
 
+// ===== AVL TREE (Self-Balancing BST) =====
+
+class AVLNode {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+        this.height = 1; // New node has height 1
+    }
+}
+
+class AVLTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // Get height of node
+    getHeight(node) {
+        return node ? node.height : 0;
+    }
+
+    // Get balance factor
+    getBalance(node) {
+        return node ? this.getHeight(node.left) - this.getHeight(node.right) : 0;
+    }
+
+    // Update height of node
+    updateHeight(node) {
+        if (node) {
+            node.height = 1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+        }
+    }
+
+    // Right rotation
+    //       y                     x
+    //      / \                   / \
+    //     x   C    -->          A   y
+    //    / \                       / \
+    //   A   B                     B   C
+    rotateRight(y) {
+        const x = y.left;
+        const B = x.right;
+
+        // Perform rotation
+        x.right = y;
+        y.left = B;
+
+        // Update heights
+        this.updateHeight(y);
+        this.updateHeight(x);
+
+        return x; // New root
+    }
+
+    // Left rotation
+    //     x                       y
+    //    / \                     / \
+    //   A   y      -->          x   C
+    //      / \                 / \
+    //     B   C               A   B
+    rotateLeft(x) {
+        const y = x.right;
+        const B = y.left;
+
+        // Perform rotation
+        y.left = x;
+        x.right = B;
+
+        // Update heights
+        this.updateHeight(x);
+        this.updateHeight(y);
+
+        return y; // New root
+    }
+
+    // Insert node
+    insert(value) {
+        this.root = this._insertNode(this.root, value);
+    }
+
+    _insertNode(node, value) {
+        // 1. Perform standard BST insertion
+        if (!node) return new AVLNode(value);
+
+        if (value < node.value) {
+            node.left = this._insertNode(node.left, value);
+        } else if (value > node.value) {
+            node.right = this._insertNode(node.right, value);
+        } else {
+            return node; // Duplicate values not allowed
+        }
+
+        // 2. Update height
+        this.updateHeight(node);
+
+        // 3. Get balance factor
+        const balance = this.getBalance(node);
+
+        // 4. Balance the tree (4 cases)
+
+        // Left Left Case
+        if (balance > 1 && value < node.left.value) {
+            return this.rotateRight(node);
+        }
+
+        // Right Right Case
+        if (balance < -1 && value > node.right.value) {
+            return this.rotateLeft(node);
+        }
+
+        // Left Right Case
+        if (balance > 1 && value > node.left.value) {
+            node.left = this.rotateLeft(node.left);
+            return this.rotateRight(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && value < node.right.value) {
+            node.right = this.rotateRight(node.right);
+            return this.rotateLeft(node);
+        }
+
+        return node;
+    }
+
+    // Search in AVL tree
+    search(value) {
+        let current = this.root;
+        while (current) {
+            if (value === current.value) return true;
+            current = value < current.value ? current.left : current.right;
+        }
+        return false;
+    }
+
+    // Delete node
+    delete(value) {
+        this.root = this._deleteNode(this.root, value);
+    }
+
+    _deleteNode(node, value) {
+        // 1. Perform standard BST delete
+        if (!node) return null;
+
+        if (value < node.value) {
+            node.left = this._deleteNode(node.left, value);
+        } else if (value > node.value) {
+            node.right = this._deleteNode(node.right, value);
+        } else {
+            // Node to delete found
+
+            // Case 1 & 2: Node with 0 or 1 child
+            if (!node.left || !node.right) {
+                return node.left || node.right;
+            }
+
+            // Case 3: Node with 2 children
+            // Get inorder successor (smallest in right subtree)
+            let minRight = node.right;
+            while (minRight.left) {
+                minRight = minRight.left;
+            }
+
+            node.value = minRight.value;
+            node.right = this._deleteNode(node.right, minRight.value);
+        }
+
+        // 2. Update height
+        this.updateHeight(node);
+
+        // 3. Get balance factor
+        const balance = this.getBalance(node);
+
+        // 4. Balance the tree (4 cases)
+
+        // Left Left Case
+        if (balance > 1 && this.getBalance(node.left) >= 0) {
+            return this.rotateRight(node);
+        }
+
+        // Left Right Case
+        if (balance > 1 && this.getBalance(node.left) < 0) {
+            node.left = this.rotateLeft(node.left);
+            return this.rotateRight(node);
+        }
+
+        // Right Right Case
+        if (balance < -1 && this.getBalance(node.right) <= 0) {
+            return this.rotateLeft(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && this.getBalance(node.right) > 0) {
+            node.right = this.rotateRight(node.right);
+            return this.rotateLeft(node);
+        }
+
+        return node;
+    }
+
+    // Inorder traversal (gives sorted order)
+    inorder(node = this.root, result = []) {
+        if (!node) return result;
+        this.inorder(node.left, result);
+        result.push(node.value);
+        this.inorder(node.right, result);
+        return result;
+    }
+
+    // Check if tree is balanced
+    isBalanced(node = this.root) {
+        if (!node) return true;
+
+        const balance = Math.abs(this.getBalance(node));
+        return balance <= 1 &&
+               this.isBalanced(node.left) &&
+               this.isBalanced(node.right);
+    }
+}
+
 // ===== COMMON TREE PROBLEMS =====
 
 // 1. Maximum Depth of Binary Tree
@@ -307,6 +527,50 @@ function kthSmallest(root, k) {
 
     inorder(root);
     return result[k - 1];
+}
+
+// 8. Check if Binary Tree is Balanced
+// Method 1: Naive approach - checks height multiple times
+function isBalanced(root) {
+    if (!root) return true;
+
+    function getHeight(node) {
+        if (!node) return 0;
+        return 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    }
+
+    const leftHeight = getHeight(root.left);
+    const rightHeight = getHeight(root.right);
+
+    return Math.abs(leftHeight - rightHeight) <= 1 &&
+           isBalanced(root.left) &&
+           isBalanced(root.right);
+}
+
+// Method 2: Optimized - single pass, O(n) time
+function isBalancedOptimized(root) {
+    function checkHeight(node) {
+        // Base case: empty node has height 0
+        if (!node) return 0;
+
+        // Check left subtree
+        const leftHeight = checkHeight(node.left);
+        if (leftHeight === -1) return -1; // Left subtree is unbalanced
+
+        // Check right subtree
+        const rightHeight = checkHeight(node.right);
+        if (rightHeight === -1) return -1; // Right subtree is unbalanced
+
+        // Check if current node is balanced
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1; // Current node is unbalanced
+        }
+
+        // Return height of current node
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    return checkHeight(root) !== -1;
 }
 
 // 10. Serialize and Deserialize Binary Tree
@@ -447,3 +711,97 @@ trie.insert('app');
 console.log('\nTrie Search "apple":', trie.search('apple')); // true
 console.log('Trie Search "app":', trie.search('app')); // true
 console.log('Trie Starts With "app":', trie.startsWith('app')); // true
+
+// Test Balanced Binary Tree
+console.log('\n===== Balanced Binary Tree Tests =====\n');
+
+// Balanced tree:
+//       1
+//      / \
+//     2   3
+//    /
+//   4
+const balanced = new TreeNode(1);
+balanced.left = new TreeNode(2);
+balanced.right = new TreeNode(3);
+balanced.left.left = new TreeNode(4);
+
+console.log('Balanced Tree (Method 1):', isBalanced(balanced)); // true
+console.log('Balanced Tree (Optimized):', isBalancedOptimized(balanced)); // true
+
+// Unbalanced tree:
+//       1
+//      /
+//     2
+//    /
+//   3
+//  /
+// 4
+const unbalanced = new TreeNode(1);
+unbalanced.left = new TreeNode(2);
+unbalanced.left.left = new TreeNode(3);
+unbalanced.left.left.left = new TreeNode(4);
+
+console.log('\nUnbalanced Tree (Method 1):', isBalanced(unbalanced)); // false
+console.log('Unbalanced Tree (Optimized):', isBalancedOptimized(unbalanced)); // false
+
+// Perfectly balanced tree:
+//       1
+//      / \
+//     2   3
+//    / \ / \
+//   4  5 6  7
+const perfect = new TreeNode(1);
+perfect.left = new TreeNode(2);
+perfect.right = new TreeNode(3);
+perfect.left.left = new TreeNode(4);
+perfect.left.right = new TreeNode(5);
+perfect.right.left = new TreeNode(6);
+perfect.right.right = new TreeNode(7);
+
+console.log('\nPerfect Tree (Method 1):', isBalanced(perfect)); // true
+console.log('Perfect Tree (Optimized):', isBalancedOptimized(perfect)); // true
+
+// Test AVL Tree (Self-Balancing)
+console.log('\n===== AVL Tree (Self-Balancing BST) Tests =====\n');
+
+const avl = new AVLTree();
+
+// Insert nodes
+console.log('Inserting: 10, 20, 30, 40, 50, 25');
+avl.insert(10);
+avl.insert(20);
+avl.insert(30);
+avl.insert(40);
+avl.insert(50);
+avl.insert(25);
+
+console.log('AVL Tree (Inorder):', avl.inorder()); // [10, 20, 25, 30, 40, 50]
+console.log('Is Balanced:', avl.isBalanced()); // true
+console.log('Root Value:', avl.root.value); // Should be balanced root
+console.log('Root Height:', avl.root.height);
+
+// Search
+console.log('\nSearch 30:', avl.search(30)); // true
+console.log('Search 100:', avl.search(100)); // false
+
+// Delete
+console.log('\nDeleting 20...');
+avl.delete(20);
+console.log('AVL Tree (Inorder):', avl.inorder()); // [10, 25, 30, 40, 50]
+console.log('Is Balanced after delete:', avl.isBalanced()); // true
+
+// Compare with regular BST (unbalanced)
+console.log('\n===== Comparison: AVL vs Regular BST =====');
+console.log('\nRegular BST with same insertions (10, 20, 30, 40, 50):');
+const regularBST = new BinarySearchTree();
+[10, 20, 30, 40, 50].forEach(val => regularBST.insert(val));
+console.log('Regular BST Height:', maxDepth(regularBST.root)); // 5 (unbalanced)
+console.log('Is Balanced:', isBalancedOptimized(regularBST.root)); // false
+
+const avl2 = new AVLTree();
+[10, 20, 30, 40, 50].forEach(val => avl2.insert(val));
+console.log('\nAVL Tree Height:', avl2.root.height); // ~3 (balanced)
+console.log('Is Balanced:', avl2.isBalanced()); // true
+
+console.log('\n===== All Tests Complete! =====');

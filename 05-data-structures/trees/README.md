@@ -13,8 +13,9 @@
 4. [Tree Traversals](#tree-traversals)
 5. [Common Patterns](#common-patterns)
 6. [Top Interview Problems](#top-interview-problems)
-7. [Trie](#trie)
-8. [Practice Problems](#practice-problems)
+7. [AVL Tree](#avl-tree-self-balancing-bst) 🔥
+8. [Trie](#trie)
+9. [Practice Problems](#practice-problems)
 
 ---
 
@@ -513,6 +514,332 @@ function kthSmallest(root, k) {
 ```
 
 **Time:** O(n) | **Space:** O(h)
+
+### 8. Check Balanced Binary Tree
+
+A binary tree is balanced if for every node, the height difference between left and right subtrees is ≤ 1.
+
+```javascript
+// Method 1: Naive approach (checks height multiple times)
+function isBalanced(root) {
+    if (!root) return true;
+
+    const leftHeight = getHeight(root.left);
+    const rightHeight = getHeight(root.right);
+
+    return Math.abs(leftHeight - rightHeight) <= 1 &&
+           isBalanced(root.left) &&
+           isBalanced(root.right);
+}
+
+function getHeight(node) {
+    if (!node) return 0;
+    return 1 + Math.max(getHeight(node.left), getHeight(node.right));
+}
+
+// Method 2: Optimized (single pass)
+function isBalancedOptimized(root) {
+    function checkHeight(node) {
+        if (!node) return 0;
+
+        const leftHeight = checkHeight(node.left);
+        if (leftHeight === -1) return -1; // Left subtree unbalanced
+
+        const rightHeight = checkHeight(node.right);
+        if (rightHeight === -1) return -1; // Right subtree unbalanced
+
+        // Check if current node is balanced
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1; // Unbalanced
+        }
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    return checkHeight(root) !== -1;
+}
+```
+
+**Time:**
+- Method 1 (Naive): O(n²) - checks height multiple times
+- Method 2 (Optimized): O(n) - single pass
+
+**Space:** O(h) - recursion stack
+
+**Example:**
+```javascript
+// Balanced tree
+//       1
+//      / \
+//     2   3
+//    /
+//   4
+// Height difference: |2 - 1| = 1 ✅
+
+// Unbalanced tree
+//       1
+//      /
+//     2
+//    /
+//   3
+// Height difference: |3 - 0| = 3 ❌
+```
+
+**Key Insight:**
+- Method 2 returns `-1` to signal unbalanced tree
+- Avoids redundant height calculations
+- Bottom-up approach is more efficient
+
+---
+
+## AVL Tree (Self-Balancing BST)
+
+### What is an AVL Tree?
+
+An **AVL tree** is a self-balancing Binary Search Tree where the height difference between left and right subtrees (balance factor) is at most 1 for all nodes.
+
+**Named after:** Adelson-Velsky and Landis (1962)
+
+### Why AVL Trees?
+
+Regular BST can become unbalanced:
+```
+// Unbalanced BST (worst case: O(n) operations)
+10
+  \
+   20
+     \
+      30
+        \
+         40
+
+// AVL Tree (always O(log n) operations)
+    20
+   /  \
+  10   30
+        \
+         40
+```
+
+### Balance Factor
+
+```
+Balance Factor = Height(Left Subtree) - Height(Right Subtree)
+```
+
+**Valid values:** -1, 0, 1
+
+If balance factor is outside this range, **rotation** is needed.
+
+### Rotations
+
+#### 1. Left Left Case (Single Right Rotation)
+
+```
+        z                                      y
+       / \                                   /   \
+      y   T4      Right Rotate (z)          x      z
+     / \          - - - - - - - - ->      /  \    /  \
+    x   T3                               T1  T2  T3  T4
+   / \
+ T1   T2
+```
+
+#### 2. Right Right Case (Single Left Rotation)
+
+```
+  z                                y
+ /  \                            /   \
+T1   y     Left Rotate(z)       z      x
+    /  \   - - - - - - - ->    / \    / \
+   T2   x                     T1  T2 T3  T4
+       / \
+     T3  T4
+```
+
+#### 3. Left Right Case (Double Rotation)
+
+```
+     z                               z                           x
+    / \                            /   \                        /  \
+   y   T4  Left Rotate (y)        x    T4  Right Rotate(z)    y      z
+  / \      - - - - - - - - ->    /  \      - - - - - - - ->  / \    / \
+T1   x                          y    T3                      T1  T2 T3  T4
+    / \                        / \
+  T2   T3                    T1   T2
+```
+
+#### 4. Right Left Case (Double Rotation)
+
+```
+   z                            z                            x
+  / \                          / \                          /  \
+T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
+    / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
+   x   T4                      T2   y                    T1  T2  T3  T4
+  / \                              /  \
+T2   T3                           T3   T4
+```
+
+### Implementation
+
+```javascript
+class AVLTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // Get height
+    getHeight(node) {
+        return node ? node.height : 0;
+    }
+
+    // Get balance factor
+    getBalance(node) {
+        return node ? this.getHeight(node.left) - this.getHeight(node.right) : 0;
+    }
+
+    // Right rotation
+    rotateRight(y) {
+        const x = y.left;
+        const T2 = x.right;
+
+        x.right = y;
+        y.left = T2;
+
+        // Update heights
+        y.height = 1 + Math.max(this.getHeight(y.left), this.getHeight(y.right));
+        x.height = 1 + Math.max(this.getHeight(x.left), this.getHeight(x.right));
+
+        return x; // New root
+    }
+
+    // Left rotation
+    rotateLeft(x) {
+        const y = x.right;
+        const T2 = y.left;
+
+        y.left = x;
+        x.right = T2;
+
+        // Update heights
+        x.height = 1 + Math.max(this.getHeight(x.left), this.getHeight(x.right));
+        y.height = 1 + Math.max(this.getHeight(y.left), this.getHeight(y.right));
+
+        return y; // New root
+    }
+
+    // Insert with automatic balancing
+    insert(value) {
+        this.root = this._insertNode(this.root, value);
+    }
+
+    _insertNode(node, value) {
+        // 1. Standard BST insertion
+        if (!node) return new AVLNode(value);
+
+        if (value < node.value) {
+            node.left = this._insertNode(node.left, value);
+        } else if (value > node.value) {
+            node.right = this._insertNode(node.right, value);
+        } else {
+            return node; // Duplicate
+        }
+
+        // 2. Update height
+        node.height = 1 + Math.max(this.getHeight(node.left), this.getHeight(node.right));
+
+        // 3. Get balance factor
+        const balance = this.getBalance(node);
+
+        // 4. Balance tree (4 cases)
+
+        // Left Left Case
+        if (balance > 1 && value < node.left.value) {
+            return this.rotateRight(node);
+        }
+
+        // Right Right Case
+        if (balance < -1 && value > node.right.value) {
+            return this.rotateLeft(node);
+        }
+
+        // Left Right Case
+        if (balance > 1 && value > node.left.value) {
+            node.left = this.rotateLeft(node.left);
+            return this.rotateRight(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && value < node.right.value) {
+            node.right = this.rotateRight(node.right);
+            return this.rotateLeft(node);
+        }
+
+        return node;
+    }
+}
+```
+
+### Time Complexity
+
+| Operation | BST (Worst) | AVL Tree |
+|-----------|-------------|----------|
+| Search    | O(n)        | **O(log n)** |
+| Insert    | O(n)        | **O(log n)** |
+| Delete    | O(n)        | **O(log n)** |
+| Space     | O(n)        | O(n)     |
+
+### Example: Building AVL Tree
+
+```javascript
+const avl = new AVLTree();
+
+// Insert: 10, 20, 30, 40, 50, 25
+avl.insert(10);  // Root
+avl.insert(20);  // Right child of 10
+avl.insert(30);  // Triggers Left-Left rotation!
+
+// After rotation:
+//     20
+//    /  \
+//   10   30
+
+avl.insert(40);  // Right child of 30
+avl.insert(50);  // Triggers Left-Left rotation on 30!
+
+// After rotation:
+//     20
+//    /  \
+//   10   40
+//       /  \
+//      30   50
+
+avl.insert(25);  // Between 20 and 30, triggers rotations
+
+// Final balanced tree:
+//       30
+//      /  \
+//    20    40
+//   / \      \
+//  10  25     50
+```
+
+### When to Use AVL Trees?
+
+**Use AVL Tree when:**
+- ✅ Frequent lookups (search-heavy operations)
+- ✅ Need guaranteed O(log n) performance
+- ✅ Balanced tree is critical
+
+**Use Regular BST when:**
+- ✅ Data is already somewhat sorted
+- ✅ Fewer operations
+- ✅ Memory is limited (AVL stores height)
+
+**Use Red-Black Tree when:**
+- ✅ More insertions/deletions than searches
+- ✅ Less strict balancing needed (Red-Black is faster for modifications)
 
 ---
 
