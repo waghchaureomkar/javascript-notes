@@ -17,8 +17,9 @@
 8. [Conditionals](#conditionals)
 9. [Loops](#loops)
 10. [Modern Features](#modern-features)
-11. [Interview Questions](#interview-questions)
-12. [Practice Problems](#practice-problems)
+11. [How JavaScript Works](#how-javascript-works) 🔥
+12. [Interview Questions](#interview-questions)
+13. [Practice Problems](#practice-problems)
 
 ---
 
@@ -680,6 +681,361 @@ function sum(...numbers) {
 }
 
 console.log(sum(1, 2, 3, 4));  // 10
+```
+
+---
+
+## How JavaScript Works
+
+> **🔥 Critical Interview Topic**
+> Understanding how JavaScript executes code is essential for interviews!
+
+### JavaScript is Single-Threaded
+
+JavaScript executes code in a **single thread** (one thing at a time). But it can handle async operations using the **Event Loop**.
+
+```javascript
+console.log("First");
+setTimeout(() => console.log("Second"), 0);
+console.log("Third");
+
+// Output:
+// First
+// Third
+// Second (even with 0ms delay!)
+```
+
+**Why?**
+- JavaScript has ONE Call Stack
+- Synchronous code executes first
+- Async callbacks wait in queues
+
+---
+
+### Execution Context
+
+**What is Execution Context?**
+
+An Execution Context is an **environment** where JavaScript code is executed. It contains:
+- **Variable Environment**: All variables and function declarations
+- **Scope Chain**: Access to outer scopes
+- **`this` keyword**: Context reference
+
+#### Types of Execution Context
+
+**1. Global Execution Context (GEC)**
+
+Created when JavaScript file runs. Only ONE global context.
+
+```javascript
+// Global Execution Context
+var globalVar = "I'm global";
+let globalLet = "Also global";
+
+function test() {
+    console.log("Function called");
+}
+
+// At this point:
+// - globalVar and globalLet are in Global EC
+// - test function is stored in memory
+// - 'this' points to window (in browser)
+```
+
+**2. Function Execution Context (FEC)**
+
+Created when a function is **called** (not when declared).
+
+```javascript
+function greet(name) {
+    var greeting = "Hello";
+    return `${greeting} ${name}`;
+}
+
+greet("John");  // Creates new Function Execution Context
+
+// Function EC contains:
+// - name parameter = "John"
+// - greeting variable = "Hello"
+// - 'this' value
+// - Link to parent scope
+```
+
+#### Phases of Execution Context
+
+**Phase 1: Creation Phase**
+
+```javascript
+console.log(name);  // undefined (not error!)
+console.log(age);   // ReferenceError
+
+var name = "John";
+let age = 25;
+```
+
+During creation:
+- `var` variables → Hoisted, set to `undefined`
+- `let/const` → Hoisted, but in **Temporal Dead Zone**
+- Functions → Fully hoisted (can call before declaration)
+- `this` → Bound
+
+**Phase 2: Execution Phase**
+
+```javascript
+var x = 10;
+let y = 20;
+
+function add(a, b) {
+    return a + b;
+}
+
+let result = add(x, y);
+
+// Execution Phase:
+// 1. x = 10 (assignment)
+// 2. y = 20 (assignment)
+// 3. add function already in memory
+// 4. add(10, 20) is called
+// 5. New FEC created for add()
+// 6. Returns 30
+// 7. result = 30
+```
+
+---
+
+### Call Stack
+
+**What is Call Stack?**
+
+The Call Stack is a **LIFO (Last In, First Out) data structure** that keeps track of function execution.
+
+#### How Call Stack Works
+
+```javascript
+function first() {
+    console.log("Inside first");
+    second();
+    console.log("Back to first");
+}
+
+function second() {
+    console.log("Inside second");
+    third();
+    console.log("Back to second");
+}
+
+function third() {
+    console.log("Inside third");
+}
+
+first();
+
+// Call Stack Visualization:
+// Step 1: [Global EC]
+// Step 2: [Global EC, first()]
+// Step 3: [Global EC, first(), second()]
+// Step 4: [Global EC, first(), second(), third()]
+// Step 5: [Global EC, first(), second()] - third() done
+// Step 6: [Global EC, first()] - second() done
+// Step 7: [Global EC] - first() done
+
+// Output:
+// Inside first
+// Inside second
+// Inside third
+// Back to second
+// Back to first
+```
+
+#### Stack Overflow
+
+```javascript
+function recursive() {
+    recursive();  // Infinite recursion
+}
+
+recursive();  // Error: Maximum call stack size exceeded
+```
+
+**Why?**
+- Each function call adds to stack
+- Stack has limited size
+- Infinite recursion fills stack → **Stack Overflow**
+
+#### Real Interview Question
+
+```javascript
+function foo() {
+    console.log("foo");
+    bar();
+}
+
+function bar() {
+    console.log("bar");
+    baz();
+}
+
+function baz() {
+    console.log("baz");
+    console.trace();  // Shows call stack!
+}
+
+foo();
+
+// Output:
+// foo
+// bar
+// baz
+// Trace:
+//   at baz (...)
+//   at bar (...)
+//   at foo (...)
+//   at Global (...)
+```
+
+---
+
+### Memory Heap
+
+**What is Memory Heap?**
+
+The Memory Heap is where JavaScript **stores objects and functions**. It's unstructured memory allocation.
+
+#### Stack vs Heap
+
+```javascript
+// STACK: Primitive values
+let age = 25;           // Stored in Stack
+let name = "John";      // Reference in Stack, value in Heap
+let isActive = true;    // Stored in Stack
+
+// HEAP: Objects, Arrays, Functions
+let user = {            // Object stored in Heap
+    name: "John",       // Stack has reference (memory address)
+    age: 25
+};
+
+let numbers = [1, 2, 3]; // Array stored in Heap
+
+function greet() {       // Function stored in Heap
+    return "Hello";
+}
+```
+
+#### Copy Behavior
+
+```javascript
+// Primitives: Copy by VALUE
+let a = 10;
+let b = a;  // Copies the value
+b = 20;
+console.log(a);  // 10 (unchanged)
+console.log(b);  // 20
+
+// Objects: Copy by REFERENCE
+let obj1 = { name: "John" };
+let obj2 = obj1;  // Copies the reference (memory address)
+obj2.name = "Jane";
+console.log(obj1.name);  // "Jane" (changed!)
+console.log(obj2.name);  // "Jane"
+
+// Both obj1 and obj2 point to SAME object in Heap
+```
+
+#### Visualization
+
+```
+STACK                    HEAP
+---------               ----------
+age: 25
+isActive: true
+user: 0x001  --------->  { name: "John", age: 25 }
+numbers: 0x002  ------->  [1, 2, 3]
+greet: 0x003  --------->  function() {...}
+```
+
+#### Memory Management
+
+```javascript
+let arr = [1, 2, 3, 4, 5];  // Array in Heap
+arr = null;  // Remove reference
+
+// Garbage Collector will clean up the array
+// when no references exist
+
+function createUser() {
+    let user = { name: "John" };
+    return user;
+}
+
+let myUser = createUser();
+// user variable (local) is destroyed
+// but object in Heap is still accessible via myUser
+```
+
+---
+
+### Interview Tricky Questions
+
+#### Q1: What will this output?
+
+```javascript
+console.log(a);
+var a = 10;
+console.log(a);
+
+// Output:
+// undefined (hoisted)
+// 10
+```
+
+#### Q2: What about this?
+
+```javascript
+console.log(b);
+let b = 20;
+
+// Output:
+// ReferenceError: Cannot access 'b' before initialization
+```
+
+#### Q3: Stack Overflow Example
+
+```javascript
+let counter = 0;
+
+function increment() {
+    counter++;
+    if (counter < 10000) {
+        increment();
+    }
+}
+
+increment();  // Works fine
+
+function infiniteLoop() {
+    infiniteLoop();  // Stack Overflow!
+}
+```
+
+#### Q4: Reference vs Value
+
+```javascript
+function modifyPrimitive(x) {
+    x = 100;
+}
+
+function modifyObject(obj) {
+    obj.value = 100;
+}
+
+let num = 10;
+modifyPrimitive(num);
+console.log(num);  // 10 (unchanged)
+
+let myObj = { value: 10 };
+modifyObject(myObj);
+console.log(myObj.value);  // 100 (changed!)
 ```
 
 ---

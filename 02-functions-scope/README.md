@@ -8,19 +8,22 @@
 ## Table of Contents
 
 1. [Function Basics](#function-basics)
-2. [Function Types](#function-types)
-3. [Parameters & Arguments](#parameters--arguments)
-4. [Return Values](#return-values)
-5. [Scope](#scope)
-6. [Hoisting](#hoisting)
-7. [Closures](#closures)
-8. [this Keyword](#this-keyword)
-9. [call, apply, bind](#call-apply-bind)
-10. [Higher-Order Functions](#higher-order-functions)
-11. [Pure Functions](#pure-functions)
-12. [Recursion](#recursion)
-13. [Currying](#currying)
-14. [Interview Questions](#interview-questions)
+2. [First-Class Functions](#first-class-functions) 🔥
+3. [Function Types](#function-types)
+4. [Parameters & Arguments](#parameters--arguments)
+5. [Return Values](#return-values)
+6. [Scope](#scope)
+7. [Hoisting](#hoisting)
+8. [Closures](#closures)
+9. [this Keyword](#this-keyword)
+10. [call, apply, bind](#call-apply-bind)
+11. [Higher-Order Functions](#higher-order-functions)
+12. [Pure Functions](#pure-functions)
+13. [Recursion](#recursion)
+14. [Currying](#currying)
+15. [Function Composition](#function-composition) 🔥
+16. [Prototypes & Inheritance](#prototypes--inheritance) 🔥
+17. [Interview Questions](#interview-questions)
 
 ---
 
@@ -45,6 +48,172 @@ greet();  // Call/Invoke the function
 ✅ **Organization** - Break code into logical pieces
 ✅ **Maintainability** - Easier to debug and update
 ✅ **Abstraction** - Hide complex logic
+
+---
+
+## First-Class Functions
+
+> **🔥 Critical Interview Concept**
+> In JavaScript, functions are "first-class citizens" - they're treated like any other value!
+
+### What Does "First-Class" Mean?
+
+Functions in JavaScript can be:
+1. **Assigned to variables**
+2. **Passed as arguments** to other functions
+3. **Returned from functions**
+4. **Stored in data structures** (arrays, objects)
+
+This makes JavaScript extremely powerful for functional programming!
+
+### 1. Assigning Functions to Variables
+
+```javascript
+// Function stored in variable
+const greet = function(name) {
+    return `Hello ${name}!`;
+};
+
+console.log(greet("John"));  // "Hello John!"
+
+// Arrow function in variable
+const add = (a, b) => a + b;
+
+// Function expression is also first-class
+const multiply = function(x, y) {
+    return x * y;
+};
+```
+
+### 2. Passing Functions as Arguments
+
+```javascript
+// Function accepts another function as parameter
+function executeOperation(a, b, operation) {
+    return operation(a, b);
+}
+
+const add = (x, y) => x + y;
+const multiply = (x, y) => x * y;
+
+console.log(executeOperation(5, 3, add));       // 8
+console.log(executeOperation(5, 3, multiply));  // 15
+
+// Real-world example: Array methods
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(function(num) {
+    return num * 2;
+});
+console.log(doubled);  // [2, 4, 6, 8, 10]
+```
+
+### 3. Returning Functions from Functions
+
+```javascript
+// Function returns another function
+function createMultiplier(multiplier) {
+    return function(number) {
+        return number * multiplier;
+    };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5));  // 10
+console.log(triple(5));  // 15
+
+// Arrow function version
+const createAdder = (x) => (y) => x + y;
+
+const add5 = createAdder(5);
+console.log(add5(10));  // 15
+```
+
+### 4. Storing Functions in Data Structures
+
+```javascript
+// Array of functions
+const operations = [
+    (a, b) => a + b,
+    (a, b) => a - b,
+    (a, b) => a * b,
+    (a, b) => a / b
+];
+
+console.log(operations[0](10, 5));  // 15 (addition)
+console.log(operations[2](10, 5));  // 50 (multiplication)
+
+// Object with function properties
+const calculator = {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b,
+    multiply: (a, b) => a * b,
+    divide: (a, b) => a / b
+};
+
+console.log(calculator.add(10, 5));      // 15
+console.log(calculator.multiply(10, 5)); // 50
+```
+
+### Real-World Use Cases
+
+#### Event Handlers
+
+```javascript
+// Functions passed as callbacks
+button.addEventListener('click', function() {
+    console.log("Button clicked!");
+});
+
+// Or with arrow function
+button.addEventListener('click', () => {
+    console.log("Button clicked!");
+});
+```
+
+#### Array Methods (Higher-Order Functions)
+
+```javascript
+const users = [
+    { name: "John", age: 25 },
+    { name: "Jane", age: 30 },
+    { name: "Bob", age: 20 }
+];
+
+// Filter: function as argument
+const adults = users.filter(user => user.age >= 25);
+
+// Map: function as argument
+const names = users.map(user => user.name);
+
+// Reduce: function as argument
+const totalAge = users.reduce((sum, user) => sum + user.age, 0);
+```
+
+#### Function Factory
+
+```javascript
+function createLogger(prefix) {
+    return function(message) {
+        console.log(`[${prefix}] ${message}`);
+    };
+}
+
+const errorLogger = createLogger("ERROR");
+const infoLogger = createLogger("INFO");
+
+errorLogger("Something went wrong!");  // [ERROR] Something went wrong!
+infoLogger("App started");             // [INFO] App started
+```
+
+### Why is This Important?
+
+✅ **Callbacks** - Pass behavior, not just data
+✅ **Higher-Order Functions** - map, filter, reduce
+✅ **Functional Programming** - Compose small functions
+✅ **Event-Driven Programming** - Event listeners
+✅ **Closures** - Functions remembering their scope
 
 ---
 
@@ -919,6 +1088,377 @@ const curriedMultiply = curry(multiply);
 console.log(curriedMultiply(2)(3)(4));  // 24
 console.log(curriedMultiply(2, 3)(4));  // 24
 console.log(curriedMultiply(2)(3, 4));  // 24
+```
+
+---
+
+## Function Composition
+
+> **🔥 Advanced Interview Topic**
+> Combining small functions to create complex behavior!
+
+### What is Function Composition?
+
+Function Composition is combining **two or more functions** to produce a new function. It's the mathematical concept: `f(g(x))`.
+
+```javascript
+// Without composition
+const result = function3(function2(function1(data)));
+
+// With composition
+const composed = compose(function3, function2, function1);
+const result = composed(data);
+```
+
+### Basic Example
+
+```javascript
+// Individual functions
+const add2 = (x) => x + 2;
+const multiply3 = (x) => x * 3;
+const subtract5 = (x) => x - 5;
+
+// Manual composition
+const result = subtract5(multiply3(add2(10)));
+// 10 -> 12 -> 36 -> 31
+console.log(result);  // 31
+
+// Better way: compose function
+const compose = (...fns) => (x) =>
+    fns.reduceRight((acc, fn) => fn(acc), x);
+
+const calculate = compose(subtract5, multiply3, add2);
+console.log(calculate(10));  // 31
+```
+
+### Compose vs Pipe
+
+**Compose**: Right to left (mathematical)
+**Pipe**: Left to right (more intuitive)
+
+```javascript
+// Compose (right to left)
+const compose = (...fns) => (x) =>
+    fns.reduceRight((acc, fn) => fn(acc), x);
+
+// Pipe (left to right)
+const pipe = (...fns) => (x) =>
+    fns.reduce((acc, fn) => fn(acc), x);
+
+const add2 = x => x + 2;
+const multiply3 = x => x * 3;
+
+// Compose: multiply3(add2(10))
+const composeResult = compose(multiply3, add2);
+console.log(composeResult(10));  // 36
+
+// Pipe: multiply3(add2(10)) - same order as written
+const pipeResult = pipe(add2, multiply3);
+console.log(pipeResult(10));  // 36
+```
+
+### Real-World Examples
+
+#### String Processing
+
+```javascript
+const trim = (str) => str.trim();
+const toLowerCase = (str) => str.toLowerCase();
+const removeSpaces = (str) => str.replace(/\s+/g, '-');
+
+const slugify = pipe(trim, toLowerCase, removeSpaces);
+
+console.log(slugify("  Hello World  "));  // "hello-world"
+```
+
+#### Data Transformation
+
+```javascript
+const users = [
+    { name: "John", age: 25, active: true },
+    { name: "Jane", age: 30, active: false },
+    { name: "Bob", age: 20, active: true }
+];
+
+const getActiveUsers = (users) =>
+    users.filter(user => user.active);
+
+const getNames = (users) =>
+    users.map(user => user.name);
+
+const sortAlphabetically = (names) =>
+    names.sort();
+
+const getActiveUserNames = pipe(
+    getActiveUsers,
+    getNames,
+    sortAlphabetically
+);
+
+console.log(getActiveUserNames(users));  // ["Bob", "John"]
+```
+
+#### Validation Pipeline
+
+```javascript
+const isNotEmpty = (str) => str.length > 0;
+const isEmail = (str) => /\S+@\S+\.\S+/.test(str);
+const isLongEnough = (str) => str.length >= 5;
+
+const validate = (value, ...validators) => {
+    return validators.every(validator => validator(value));
+};
+
+const email = "test@example.com";
+console.log(validate(email, isNotEmpty, isEmail, isLongEnough));  // true
+```
+
+### Benefits of Composition
+
+✅ **Reusability**: Small, focused functions
+✅ **Testability**: Each function tested independently
+✅ **Readability**: Clear data flow
+✅ **Maintainability**: Easy to modify pipeline
+✅ **No Side Effects**: Pure functions
+
+### Interview Example
+
+**Question**: Create a function that processes user data: trim names, convert to uppercase, and add greeting.
+
+```javascript
+const trim = (str) => str.trim();
+const toUpperCase = (str) => str.toUpperCase();
+const addGreeting = (str) => `Hello, ${str}!`;
+
+const processName = pipe(trim, toUpperCase, addGreeting);
+
+console.log(processName("  john  "));  // "Hello, JOHN!"
+```
+
+---
+
+## Prototypes & Inheritance
+
+> **🔥 Critical Interview Topic**
+> Understanding prototypes is essential for JavaScript interviews!
+
+### What is a Prototype?
+
+Every JavaScript object has a hidden property called `[[Prototype]]` that references another object. This creates a **prototype chain** for inheritance.
+
+```javascript
+const obj = {};
+console.log(obj.__proto__);  // Object.prototype
+console.log(obj.toString);   // Inherited from Object.prototype
+```
+
+### `__proto__` vs `prototype`
+
+**`__proto__`**: The actual object used in prototype chain (property of **instances**)
+**`prototype`**: Property of **constructor functions** used to build `__proto__`
+
+```javascript
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.greet = function() {
+    return `Hi, I'm ${this.name}`;
+};
+
+const john = new Person("John");
+
+// john's __proto__ points to Person.prototype
+console.log(john.__proto__ === Person.prototype);  // true
+
+// Person.prototype's __proto__ points to Object.prototype
+console.log(Person.prototype.__proto__ === Object.prototype);  // true
+```
+
+### Prototype Chain
+
+```javascript
+function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.eat = function() {
+    return `${this.name} is eating`;
+};
+
+function Dog(name, breed) {
+    Animal.call(this, name);  // Call parent constructor
+    this.breed = breed;
+}
+
+// Inherit from Animal
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+    return `${this.name} says Woof!`;
+};
+
+const myDog = new Dog("Buddy", "Golden Retriever");
+
+console.log(myDog.bark());  // "Buddy says Woof!"
+console.log(myDog.eat());   // "Buddy is eating" (inherited)
+
+// Prototype chain:
+// myDog -> Dog.prototype -> Animal.prototype -> Object.prototype -> null
+```
+
+### Visualizing the Chain
+
+```
+myDog object
+   |
+   | __proto__
+   |
+Dog.prototype { bark: function }
+   |
+   | __proto__
+   |
+Animal.prototype { eat: function }
+   |
+   | __proto__
+   |
+Object.prototype { toString: function, ... }
+   |
+   | __proto__
+   |
+null
+```
+
+### ES6 Classes (Syntactic Sugar)
+
+```javascript
+// ES6 way (same prototype chain underneath!)
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    eat() {
+        return `${this.name} is eating`;
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name);  // Call parent constructor
+        this.breed = breed;
+    }
+
+    bark() {
+        return `${this.name} says Woof!`;
+    }
+}
+
+const myDog = new Dog("Buddy", "Golden Retriever");
+console.log(myDog.bark());  // "Buddy says Woof!"
+console.log(myDog.eat());   // "Buddy is eating"
+```
+
+### Property Lookup
+
+```javascript
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.greet = function() {
+    return `Hello from ${this.name}`;
+};
+
+const john = new Person("John");
+
+// Property lookup order:
+// 1. Check john object itself -> Has 'name'
+console.log(john.name);  // "John" (found on object)
+
+// 2. Not on john -> Check john.__proto__ (Person.prototype)
+console.log(john.greet());  // "Hello from John" (found on prototype)
+
+// 3. Not on Person.prototype -> Check Person.prototype.__proto__ (Object.prototype)
+console.log(john.toString());  // "[object Object]" (found on Object.prototype)
+
+// 4. Not anywhere -> undefined
+console.log(john.nonExistent);  // undefined
+```
+
+### Checking Prototypes
+
+```javascript
+// Check if property exists on object itself
+john.hasOwnProperty('name');  // true
+john.hasOwnProperty('greet');  // false (on prototype)
+
+// Check if object is in prototype chain
+Person.prototype.isPrototypeOf(john);  // true
+Object.prototype.isPrototypeOf(john);  // true
+
+// Get prototype
+Object.getPrototypeOf(john) === Person.prototype;  // true
+```
+
+### Common Interview Questions
+
+#### Q1: What's the difference between `__proto__` and `prototype`?
+
+```javascript
+function Person(name) {
+    this.name = name;
+}
+
+const john = new Person("John");
+
+// prototype: Property of CONSTRUCTOR FUNCTION
+console.log(Person.prototype);  // { constructor: Person }
+
+// __proto__: Property of INSTANCE
+console.log(john.__proto__ === Person.prototype);  // true
+```
+
+#### Q2: How does inheritance work?
+
+```javascript
+// Child inherits from Parent
+function Parent() {
+    this.parentProp = "I'm from parent";
+}
+
+function Child() {
+    this.childProp = "I'm from child";
+}
+
+// Setup inheritance
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+const child = new Child();
+console.log(child.childProp);   // "I'm from child"
+console.log(child.parentProp);  // undefined (not copied from constructor)
+
+// To get parent properties, call parent constructor:
+function Child() {
+    Parent.call(this);  // Call parent constructor
+    this.childProp = "I'm from child";
+}
+```
+
+#### Q3: Prototype Pollution (Security Issue)
+
+```javascript
+// DON'T DO THIS - Security risk!
+Object.prototype.isAdmin = true;
+
+const user = {};
+console.log(user.isAdmin);  // true (polluted!)
+
+// All objects now have isAdmin
+const anotherUser = {};
+console.log(anotherUser.isAdmin);  // true
 ```
 
 ---
