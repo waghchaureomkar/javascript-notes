@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics - Complete Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>CSS Basics - Complete Guide</h1>
+        <p>Master the fundamentals of CSS with practical examples</p>
+    </header>
+
+    <nav class="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#selectors">Selectors</a></li>
+            <li><a href="#properties">Properties</a></li>
+            <li><a href="#box-model">Box Model</a></li>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#text">Text Styling</a></li>
+            <li><a href="#backgrounds">Backgrounds</a></li>
+            <li><a href="#borders">Borders</a></li>
+            <li><a href="#display">Display Property</a></li>
+            <li><a href="#position">Position Property</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <!-- Selectors Section -->
+        <section id="selectors" class="section">
+            <h2>1. CSS Selectors</h2>
+
+            <div class="example-group">
+                <h3>Element Selector</h3>
+                <div class="example">
+                    <p class="demo-text">This is styled with element selector</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Class Selector</h3>
+                <div class="example">
+                    <p class="highlight">This uses class selector (.highlight)</p>
+                    <p class="highlight">Multiple elements can share classes</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>ID Selector</h3>
+                <div class="example">
+                    <p id="unique-text">This uses ID selector (#unique-text)</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Universal Selector</h3>
+                <div class="example universal-demo">
+                    <p>Universal selector (*) affects all elements</p>
+                    <span>Including this span</span>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Descendant Selector</h3>
+                <div class="example parent">
+                    <p>I'm inside parent div</p>
+                    <div>
+                        <p>I'm a nested paragraph</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Child Selector</h3>
+                <div class="example direct-parent">
+                    <p>I'm a direct child</p>
+                    <div>
+                        <p>I'm not a direct child</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Attribute Selector</h3>
+                <div class="example">
+                    <input type="text" placeholder="Text input">
+                    <input type="email" placeholder="Email input">
+                    <input type="password" placeholder="Password input">
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grouping Selector</h3>
+                <div class="example">
+                    <h4>Heading</h4>
+                    <p class="group-demo">Paragraph</p>
+                    <span class="group-demo">Span</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Box Model Section -->
+        <section id="box-model" class="section">
+            <h2>2. CSS Box Model</h2>
+
+            <div class="example-group">
+                <h3>Understanding the Box Model</h3>
+                <div class="box-model-demo">
+                    <div class="box">
+                        Content Area
+                    </div>
+                </div>
+                <div class="box-explanation">
+                    <p><strong>Content:</strong> The actual content (text, images)</p>
+                    <p><strong>Padding:</strong> Space between content and border</p>
+                    <p><strong>Border:</strong> Line around padding</p>
+                    <p><strong>Margin:</strong> Space outside the border</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Box-Sizing Property</h3>
+                <div class="example">
+                    <div class="box-content">box-sizing: content-box (default)</div>
+                    <div class="box-border">box-sizing: border-box</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Margin Examples</h3>
+                <div class="example">
+                    <div class="margin-demo margin-all">Margin on all sides</div>
+                    <div class="margin-demo margin-specific">Specific margins</div>
+                    <div class="margin-demo margin-auto">Margin auto (centered)</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Padding Examples</h3>
+                <div class="example">
+                    <div class="padding-demo padding-all">Padding on all sides</div>
+                    <div class="padding-demo padding-specific">Specific padding</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Colors Section -->
+        <section id="colors" class="section">
+            <h2>3. Colors in CSS</h2>
+
+            <div class="example-group">
+                <h3>Color Formats</h3>
+                <div class="example color-grid">
+                    <div class="color-box color-named">Named Color<br>(tomato)</div>
+                    <div class="color-box color-hex">Hex Color<br>(#3498db)</div>
+                    <div class="color-box color-rgb">RGB Color<br>(rgb(46, 204, 113))</div>
+                    <div class="color-box color-rgba">RGBA Color<br>(rgba(155, 89, 182, 0.7))</div>
+                    <div class="color-box color-hsl">HSL Color<br>(hsl(48, 100%, 50%))</div>
+                    <div class="color-box color-hsla">HSLA Color<br>(hsla(348, 100%, 61%, 0.8))</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Transparency</h3>
+                <div class="example transparency-demo">
+                    <div class="transparent-box opacity-full">Opacity: 1</div>
+                    <div class="transparent-box opacity-75">Opacity: 0.75</div>
+                    <div class="transparent-box opacity-50">Opacity: 0.5</div>
+                    <div class="transparent-box opacity-25">Opacity: 0.25</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Styling Section -->
+        <section id="text" class="section">
+            <h2>4. Text Styling</h2>
+
+            <div class="example-group">
+                <h3>Font Properties</h3>
+                <div class="example">
+                    <p class="font-family">Font Family: Arial, sans-serif</p>
+                    <p class="font-size">Font Size: 20px</p>
+                    <p class="font-weight">Font Weight: bold</p>
+                    <p class="font-style">Font Style: italic</p>
+                    <p class="font-variant">Font Variant: small-caps</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Text Properties</h3>
+                <div class="example">
+                    <p class="text-align-left">Text Align: left</p>
+                    <p class="text-align-center">Text Align: center</p>
+                    <p class="text-align-right">Text Align: right</p>
+                    <p class="text-decoration">Text Decoration: underline</p>
+                    <p class="text-transform-uppercase">Text Transform: uppercase</p>
+                    <p class="text-transform-lowercase">TEXT TRANSFORM: LOWERCASE</p>
+                    <p class="text-transform-capitalize">text transform: capitalize</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Line Height & Letter Spacing</h3>
+                <div class="example">
+                    <p class="line-height-demo">
+                        Line height controls the vertical space between lines of text.
+                        This paragraph has increased line height for better readability.
+                        Notice how the text is more spaced out vertically.
+                    </p>
+                    <p class="letter-spacing-demo">Letter Spacing Example</p>
+                    <p class="word-spacing-demo">Word Spacing Example Here</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Text Shadow</h3>
+                <div class="example">
+                    <h3 class="text-shadow-simple">Simple Text Shadow</h3>
+                    <h3 class="text-shadow-multiple">Multiple Text Shadows</h3>
+                    <h3 class="text-shadow-glow">Glowing Text Effect</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backgrounds Section -->
+        <section id="backgrounds" class="section">
+            <h2>5. Backgrounds</h2>
+
+            <div class="example-group">
+                <h3>Background Color</h3>
+                <div class="example">
+                    <div class="bg-color">Solid Background Color</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Background Gradients</h3>
+                <div class="example gradient-grid">
+                    <div class="gradient-box gradient-linear">Linear Gradient</div>
+                    <div class="gradient-box gradient-radial">Radial Gradient</div>
+                    <div class="gradient-box gradient-conic">Conic Gradient</div>
+                    <div class="gradient-box gradient-multiple">Multiple Colors</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Background Properties</h3>
+                <div class="example bg-props-grid">
+                    <div class="bg-prop bg-repeat">background-repeat: repeat</div>
+                    <div class="bg-prop bg-no-repeat">background-repeat: no-repeat</div>
+                    <div class="bg-prop bg-cover">background-size: cover</div>
+                    <div class="bg-prop bg-contain">background-size: contain</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Borders Section -->
+        <section id="borders" class="section">
+            <h2>6. Borders</h2>
+
+            <div class="example-group">
+                <h3>Border Styles</h3>
+                <div class="example border-grid">
+                    <div class="border-box border-solid">Solid</div>
+                    <div class="border-box border-dashed">Dashed</div>
+                    <div class="border-box border-dotted">Dotted</div>
+                    <div class="border-box border-double">Double</div>
+                    <div class="border-box border-groove">Groove</div>
+                    <div class="border-box border-ridge">Ridge</div>
+                    <div class="border-box border-inset">Inset</div>
+                    <div class="border-box border-outset">Outset</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Border Radius</h3>
+                <div class="example border-radius-grid">
+                    <div class="radius-box radius-small">5px radius</div>
+                    <div class="radius-box radius-medium">15px radius</div>
+                    <div class="radius-box radius-large">30px radius</div>
+                    <div class="radius-box radius-circle">50% (circle)</div>
+                    <div class="radius-box radius-custom">Custom radius</div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Box Shadow</h3>
+                <div class="example shadow-grid">
+                    <div class="shadow-box shadow-simple">Simple Shadow</div>
+                    <div class="shadow-box shadow-colored">Colored Shadow</div>
+                    <div class="shadow-box shadow-multiple">Multiple Shadows</div>
+                    <div class="shadow-box shadow-inset">Inset Shadow</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Display Section -->
+        <section id="display" class="section">
+            <h2>7. Display Property</h2>
+
+            <div class="example-group">
+                <h3>Display: Block</h3>
+                <div class="example">
+                    <span class="display-block">Block Element 1</span>
+                    <span class="display-block">Block Element 2</span>
+                    <p class="info-text">Block elements take full width and start on a new line</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Display: Inline</h3>
+                <div class="example">
+                    <div class="display-inline">Inline Element 1</div>
+                    <div class="display-inline">Inline Element 2</div>
+                    <div class="display-inline">Inline Element 3</div>
+                    <p class="info-text">Inline elements flow with text and don't break line</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Display: Inline-Block</h3>
+                <div class="example">
+                    <div class="display-inline-block">Box 1</div>
+                    <div class="display-inline-block">Box 2</div>
+                    <div class="display-inline-block">Box 3</div>
+                    <p class="info-text">Inline-block allows width/height while staying inline</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Display: None vs Visibility: Hidden</h3>
+                <div class="example">
+                    <div class="visibility-demo">
+                        <div class="box-visible">Visible</div>
+                        <div class="box-hidden">Hidden (takes space)</div>
+                        <div class="box-visible">Visible</div>
+                    </div>
+                    <div class="visibility-demo">
+                        <div class="box-visible">Visible</div>
+                        <div class="box-none">Display None (no space)</div>
+                        <div class="box-visible">Visible</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Position Section -->
+        <section id="position" class="section">
+            <h2>8. Position Property</h2>
+
+            <div class="example-group">
+                <h3>Position: Static (Default)</h3>
+                <div class="example position-container">
+                    <div class="position-box position-static">Static Position</div>
+                    <p class="info-text">Default positioning, follows normal document flow</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Position: Relative</h3>
+                <div class="example position-container">
+                    <div class="position-box position-relative">Relative Position</div>
+                    <p class="info-text">Positioned relative to its normal position</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Position: Absolute</h3>
+                <div class="example position-container position-relative-parent">
+                    <div class="position-box position-absolute">Absolute Position</div>
+                    <p class="info-text">Positioned relative to nearest positioned ancestor</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Position: Fixed</h3>
+                <div class="example">
+                    <div class="position-box position-fixed-demo">Fixed Position (scroll to see)</div>
+                    <p class="info-text">Stays in place when scrolling</p>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Position: Sticky</h3>
+                <div class="example sticky-container">
+                    <div class="position-box position-sticky">Sticky Position</div>
+                    <p>Scroll down to see sticky behavior...</p>
+                    <div style="height: 300px; background: linear-gradient(to bottom, #f0f0f0, #fff);">
+                        <p style="padding: 20px;">Content below sticky element</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Z-Index</h3>
+                <div class="example z-index-demo">
+                    <div class="z-box z-box-1">Z-Index: 1</div>
+                    <div class="z-box z-box-2">Z-Index: 2</div>
+                    <div class="z-box z-box-3">Z-Index: 3</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>CSS Basics Complete Guide - Practice and Master CSS Fundamentals</p>
+    </footer>
+</body>
+</html>

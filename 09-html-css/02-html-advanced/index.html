@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Advanced - HTML5 APIs & Features</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>HTML Advanced - HTML5 APIs & Modern Features</h1>
+        <nav>
+            <ul>
+                <li><a href="#canvas">Canvas</a></li>
+                <li><a href="#svg">SVG</a></li>
+                <li><a href="#storage">Web Storage</a></li>
+                <li><a href="#geolocation">Geolocation</a></li>
+                <li><a href="#drag-drop">Drag & Drop</a></li>
+                <li><a href="#accessibility">Accessibility</a></li>
+                <li><a href="#seo">SEO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. CANVAS API -->
+        <section id="canvas">
+            <h2>1. HTML5 Canvas API</h2>
+            <article>
+                <h3>What is Canvas?</h3>
+                <p>Canvas is used to draw graphics on the fly using JavaScript</p>
+
+                <h3>Basic Canvas</h3>
+                <canvas id="myCanvas" width="400" height="200" style="border: 1px solid black;"></canvas>
+
+                <h3>Drawing Examples</h3>
+                <canvas id="shapesCanvas" width="600" height="300" style="border: 1px solid black;"></canvas>
+
+                <script>
+                    // Basic Canvas
+                    const canvas = document.getElementById('myCanvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Rectangle
+                    ctx.fillStyle = '#3498db';
+                    ctx.fillRect(20, 20, 150, 100);
+
+                    // Text
+                    ctx.font = '30px Arial';
+                    ctx.fillStyle = 'white';
+                    ctx.fillText('Canvas!', 40, 80);
+
+                    // Shapes Canvas
+                    const shapesCanvas = document.getElementById('shapesCanvas');
+                    const sCtx = shapesCanvas.getContext('2d');
+
+                    // Rectangle (filled)
+                    sCtx.fillStyle = '#e74c3c';
+                    sCtx.fillRect(20, 20, 100, 80);
+
+                    // Rectangle (stroke)
+                    sCtx.strokeStyle = '#2ecc71';
+                    sCtx.lineWidth = 3;
+                    sCtx.strokeRect(150, 20, 100, 80);
+
+                    // Circle
+                    sCtx.fillStyle = '#9b59b6';
+                    sCtx.beginPath();
+                    sCtx.arc(350, 60, 40, 0, 2 * Math.PI);
+                    sCtx.fill();
+
+                    // Line
+                    sCtx.strokeStyle = '#34495e';
+                    sCtx.lineWidth = 5;
+                    sCtx.beginPath();
+                    sCtx.moveTo(20, 150);
+                    sCtx.lineTo(200, 150);
+                    sCtx.stroke();
+
+                    // Triangle
+                    sCtx.fillStyle = '#f39c12';
+                    sCtx.beginPath();
+                    sCtx.moveTo(250, 200);
+                    sCtx.lineTo(200, 280);
+                    sCtx.lineTo(300, 280);
+                    sCtx.closePath();
+                    sCtx.fill();
+
+                    // Gradient
+                    const gradient = sCtx.createLinearGradient(350, 150, 500, 250);
+                    gradient.addColorStop(0, '#e74c3c');
+                    gradient.addColorStop(1, '#3498db');
+                    sCtx.fillStyle = gradient;
+                    sCtx.fillRect(350, 150, 150, 100);
+                </script>
+
+                <h3>Canvas Methods</h3>
+                <pre><code>// Context Methods
+fillRect(x, y, width, height)    // Filled rectangle
+strokeRect(x, y, width, height)  // Outlined rectangle
+clearRect(x, y, width, height)   // Clear area
+
+// Path Methods
+beginPath()                       // Start new path
+moveTo(x, y)                     // Move pen
+lineTo(x, y)                     // Draw line
+arc(x, y, r, start, end)         // Draw arc/circle
+closePath()                      // Close path
+fill()                           // Fill path
+stroke()                         // Stroke path
+
+// Styles
+fillStyle = color               // Fill color
+strokeStyle = color             // Stroke color
+lineWidth = number              // Line width
+
+// Text
+fillText(text, x, y)           // Filled text
+strokeText(text, x, y)         // Outlined text
+font = "size family"           // Font style</code></pre>
+            </article>
+        </section>
+
+        <!-- 2. SVG -->
+        <section id="svg">
+            <h2>2. SVG (Scalable Vector Graphics)</h2>
+            <article>
+                <h3>What is SVG?</h3>
+                <p>SVG is XML-based vector graphics. Scalable, search-engine friendly, and accessible.</p>
+
+                <h3>SVG Examples</h3>
+                <svg width="600" height="300" style="border: 1px solid black;">
+                    <!-- Circle -->
+                    <circle cx="80" cy="80" r="60" fill="#3498db" />
+
+                    <!-- Rectangle -->
+                    <rect x="200" y="20" width="120" height="80" fill="#e74c3c" />
+
+                    <!-- Line -->
+                    <line x1="20" y1="180" x2="200" y2="180" stroke="#2ecc71" stroke-width="5" />
+
+                    <!-- Polygon (Triangle) -->
+                    <polygon points="250,200 200,280 300,280" fill="#f39c12" />
+
+                    <!-- Text -->
+                    <text x="400" y="100" font-size="30" fill="#9b59b6">SVG Text</text>
+
+                    <!-- Path -->
+                    <path d="M 400 150 Q 450 200 500 150" stroke="#34495e" stroke-width="3" fill="none" />
+                </svg>
+
+                <h3>Canvas vs SVG</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Canvas</th>
+                        <th>SVG</th>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Raster (pixel-based)</td>
+                        <td>Vector (path-based)</td>
+                    </tr>
+                    <tr>
+                        <td>Scalability</td>
+                        <td>Gets pixelated when scaled</td>
+                        <td>Scales without quality loss</td>
+                    </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td>Better for many objects</td>
+                        <td>Slower with many elements</td>
+                    </tr>
+                    <tr>
+                        <td>Accessibility</td>
+                        <td>Poor (just pixels)</td>
+                        <td>Good (can be read by screen readers)</td>
+                    </tr>
+                    <tr>
+                        <td>SEO</td>
+                        <td>Not searchable</td>
+                        <td>Searchable (XML-based)</td>
+                    </tr>
+                    <tr>
+                        <td>Event Handlers</td>
+                        <td>Must calculate positions</td>
+                        <td>Can attach to individual elements</td>
+                    </tr>
+                    <tr>
+                        <td>Use Case</td>
+                        <td>Games, complex graphics</td>
+                        <td>Charts, icons, logos</td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+
+        <!-- 3. WEB STORAGE API -->
+        <section id="storage">
+            <h2>3. Web Storage API</h2>
+            <article>
+                <h3>localStorage vs sessionStorage</h3>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>localStorage</th>
+                        <th>sessionStorage</th>
+                    </tr>
+                    <tr>
+                        <td>Persistence</td>
+                        <td>Permanent (until cleared)</td>
+                        <td>Only for session (tab close = clear)</td>
+                    </tr>
+                    <tr>
+                        <td>Scope</td>
+                        <td>Shared across all tabs</td>
+                        <td>Specific to tab</td>
+                    </tr>
+                    <tr>
+                        <td>Size Limit</td>
+                        <td>~5-10MB</td>
+                        <td>~5-10MB</td>
+                    </tr>
+                </table>
+
+                <h3>Try Web Storage</h3>
+                <div class="storage-demo">
+                    <h4>localStorage Demo</h4>
+                    <input type="text" id="localInput" placeholder="Enter text">
+                    <button onclick="saveToLocal()">Save to localStorage</button>
+                    <button onclick="getFromLocal()">Get from localStorage</button>
+                    <button onclick="clearLocal()">Clear localStorage</button>
+                    <p id="localOutput"></p>
+
+                    <h4>sessionStorage Demo</h4>
+                    <input type="text" id="sessionInput" placeholder="Enter text">
+                    <button onclick="saveToSession()">Save to sessionStorage</button>
+                    <button onclick="getFromSession()">Get from sessionStorage</button>
+                    <button onclick="clearSession()">Clear sessionStorage</button>
+                    <p id="sessionOutput"></p>
+                </div>
+
+                <script>
+                    function saveToLocal() {
+                        const value = document.getElementById('localInput').value;
+                        localStorage.setItem('myData', value);
+                        alert('Saved to localStorage!');
+                    }
+
+                    function getFromLocal() {
+                        const value = localStorage.getItem('myData');
+                        document.getElementById('localOutput').textContent =
+                            value ? `Stored value: ${value}` : 'No data found';
+                    }
+
+                    function clearLocal() {
+                        localStorage.removeItem('myData');
+                        document.getElementById('localOutput').textContent = 'Cleared!';
+                    }
+
+                    function saveToSession() {
+                        const value = document.getElementById('sessionInput').value;
+                        sessionStorage.setItem('sessionData', value);
+                        alert('Saved to sessionStorage!');
+                    }
+
+                    function getFromSession() {
+                        const value = sessionStorage.getItem('sessionData');
+                        document.getElementById('sessionOutput').textContent =
+                            value ? `Stored value: ${value}` : 'No data found';
+                    }
+
+                    function clearSession() {
+                        sessionStorage.removeItem('sessionData');
+                        document.getElementById('sessionOutput').textContent = 'Cleared!';
+                    }
+                </script>
+
+                <h3>Storage Methods</h3>
+                <pre><code>// Set item
+localStorage.setItem('key', 'value');
+
+// Get item
+const value = localStorage.getItem('key');
+
+// Remove item
+localStorage.removeItem('key');
+
+// Clear all
+localStorage.clear();
+
+// Get all keys
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    console.log(key, localStorage.getItem(key));
+}</code></pre>
+            </article>
+        </section>
+
+        <!-- 4. GEOLOCATION API -->
+        <section id="geolocation">
+            <h2>4. Geolocation API</h2>
+            <article>
+                <h3>Get User Location</h3>
+                <button onclick="getLocation()">Get My Location</button>
+                <p id="locationOutput"></p>
+
+                <script>
+                    function getLocation() {
+                        const output = document.getElementById('locationOutput');
+
+                        if (!navigator.geolocation) {
+                            output.textContent = 'Geolocation is not supported by your browser';
+                            return;
+                        }
+
+                        output.textContent = 'Locating...';
+
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const lat = position.coords.latitude;
+                                const lon = position.coords.longitude;
+                                output.innerHTML = `
+                                    <strong>Your Location:</strong><br>
+                                    Latitude: ${lat}<br>
+                                    Longitude: ${lon}<br>
+                                    Accuracy: ${position.coords.accuracy} meters
+                                `;
+                            },
+                            (error) => {
+                                output.textContent = `Error: ${error.message}`;
+                            }
+                        );
+                    }
+                </script>
+
+                <h3>Geolocation Methods</h3>
+                <pre><code>// Get current position (one-time)
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+// Watch position (continuous)
+const watchID = navigator.geolocation.watchPosition(success, error, options);
+
+// Stop watching
+navigator.geolocation.clearWatch(watchID);
+
+// Success callback
+function success(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    const accuracy = position.coords.accuracy;
+}
+
+// Error callback
+function error(err) {
+    console.log(err.code, err.message);
+}</code></pre>
+            </article>
+        </section>
+
+        <!-- 5. DRAG AND DROP API -->
+        <section id="drag-drop">
+            <h2>5. Drag and Drop API</h2>
+            <article>
+                <h3>Try Drag and Drop</h3>
+                <div class="drag-container">
+                    <div class="draggable" draggable="true" ondragstart="drag(event)" id="drag1">
+                        Drag me!
+                    </div>
+
+                    <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        Drop Zone 1
+                    </div>
+
+                    <div class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        Drop Zone 2
+                    </div>
+                </div>
+
+                <script>
+                    function allowDrop(ev) {
+                        ev.preventDefault();
+                    }
+
+                    function drag(ev) {
+                        ev.dataTransfer.setData("text", ev.target.id);
+                    }
+
+                    function drop(ev) {
+                        ev.preventDefault();
+                        const data = ev.dataTransfer.getData("text");
+                        ev.target.appendChild(document.getElementById(data));
+                    }
+                </script>
+
+                <h3>Drag & Drop Events</h3>
+                <pre><code>// Draggable element events
+ondragstart   // When drag starts
+ondrag        // While dragging
+ondragend     // When drag ends
+
+// Drop zone events
+ondragenter   // When dragged element enters
+ondragover    // While dragged element is over (must preventDefault)
+ondragleave   // When dragged element leaves
+ondrop        // When element is dropped (must preventDefault)
+
+// Data Transfer
+ev.dataTransfer.setData(format, data);  // Set data
+ev.dataTransfer.getData(format);         // Get data
+ev.dataTransfer.effectAllowed;           // copy, move, link
+ev.dataTransfer.dropEffect;              // Visual feedback</code></pre>
+            </article>
+        </section>
+
+        <!-- 6. ACCESSIBILITY (ARIA) -->
+        <section id="accessibility">
+            <h2>6. Web Accessibility (ARIA)</h2>
+            <article>
+                <h3>What is ARIA?</h3>
+                <p>Accessible Rich Internet Applications - Makes web content accessible to people with disabilities</p>
+
+                <h3>ARIA Attributes</h3>
+                <dl>
+                    <dt><code>role</code></dt>
+                    <dd>Defines element purpose (button, navigation, main, etc.)</dd>
+
+                    <dt><code>aria-label</code></dt>
+                    <dd>Provides accessible name for element</dd>
+
+                    <dt><code>aria-labelledby</code></dt>
+                    <dd>References ID of element that labels current element</dd>
+
+                    <dt><code>aria-describedby</code></dt>
+                    <dd>References ID of element that describes current element</dd>
+
+                    <dt><code>aria-hidden</code></dt>
+                    <dd>Hides element from screen readers</dd>
+
+                    <dt><code>aria-live</code></dt>
+                    <dd>Announces dynamic content changes</dd>
+
+                    <dt><code>aria-expanded</code></dt>
+                    <dd>Indicates if element is expanded</dd>
+
+                    <dt><code>aria-required</code></dt>
+                    <dd>Marks required form fields</dd>
+                </dl>
+
+                <h3>Examples</h3>
+                <pre><code>&lt;!-- Custom button --&gt;
+&lt;div role="button" tabindex="0" aria-label="Close dialog"&gt;X&lt;/div&gt;
+
+&lt;!-- Navigation --&gt;
+&lt;nav role="navigation" aria-label="Main navigation"&gt;...&lt;/nav&gt;
+
+&lt;!-- Form with error --&gt;
+&lt;input type="email" aria-required="true" aria-invalid="true"
+       aria-describedby="email-error"&gt;
+&lt;span id="email-error"&gt;Please enter valid email&lt;/span&gt;
+
+&lt;!-- Live region --&gt;
+&lt;div aria-live="polite" aria-atomic="true"&gt;
+    Content will be announced when updated
+&lt;/div&gt;
+
+&lt;!-- Expandable section --&gt;
+&lt;button aria-expanded="false" aria-controls="content"&gt;
+    Show More
+&lt;/button&gt;
+&lt;div id="content" hidden&gt;...&lt;/div&gt;</code></pre>
+
+                <h3>Accessibility Best Practices</h3>
+                <ul>
+                    <li>✅ Use semantic HTML (nav, main, article)</li>
+                    <li>✅ Provide alt text for images</li>
+                    <li>✅ Use proper heading hierarchy (h1 → h2 → h3)</li>
+                    <li>✅ Label all form inputs</li>
+                    <li>✅ Ensure keyboard navigation works</li>
+                    <li>✅ Use sufficient color contrast (4.5:1 for text)</li>
+                    <li>✅ Don't rely only on color to convey information</li>
+                    <li>✅ Provide skip navigation links</li>
+                    <li>✅ Use ARIA only when semantic HTML isn't enough</li>
+                    <li>✅ Test with screen readers</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- 7. SEO OPTIMIZATION -->
+        <section id="seo">
+            <h2>7. SEO Best Practices</h2>
+            <article>
+                <h3>Essential Meta Tags</h3>
+                <pre><code>&lt;!-- Title (50-60 characters) --&gt;
+&lt;title&gt;Your Page Title - Brand Name&lt;/title&gt;
+
+&lt;!-- Description (150-160 characters) --&gt;
+&lt;meta name="description" content="Brief description of your page"&gt;
+
+&lt;!-- Keywords --&gt;
+&lt;meta name="keywords" content="keyword1, keyword2, keyword3"&gt;
+
+&lt;!-- Author --&gt;
+&lt;meta name="author" content="Your Name"&gt;
+
+&lt;!-- Robots --&gt;
+&lt;meta name="robots" content="index, follow"&gt;
+
+&lt;!-- Canonical URL --&gt;
+&lt;link rel="canonical" href="https://example.com/page"&gt;
+
+&lt;!-- Open Graph (Facebook) --&gt;
+&lt;meta property="og:title" content="Page Title"&gt;
+&lt;meta property="og:description" content="Page Description"&gt;
+&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;
+
+&lt;!-- Twitter Card --&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Page Title"&gt;
+&lt;meta name="twitter:description" content="Page Description"&gt;
+&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;</code></pre>
+
+                <h3>SEO Best Practices</h3>
+                <ol>
+                    <li><strong>Use Semantic HTML</strong>: header, nav, main, article, aside, footer</li>
+                    <li><strong>Proper Heading Structure</strong>: One h1 per page, logical hierarchy</li>
+                    <li><strong>Descriptive URLs</strong>: /blog/html-tutorial (not /page?id=123)</li>
+                    <li><strong>Alt Text for Images</strong>: Descriptive and keyword-rich</li>
+                    <li><strong>Internal Linking</strong>: Link to related pages on your site</li>
+                    <li><strong>Mobile-Friendly</strong>: Responsive design, viewport meta tag</li>
+                    <li><strong>Fast Loading</strong>: Optimize images, minify CSS/JS</li>
+                    <li><strong>HTTPS</strong>: Secure connection</li>
+                    <li><strong>Schema Markup</strong>: Structured data for rich snippets</li>
+                    <li><strong>Sitemap</strong>: XML sitemap for search engines</li>
+                </ol>
+
+                <h3>Schema.org Structured Data</h3>
+                <pre><code>&lt;!-- Article Schema --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTML Advanced Tutorial",
+  "author": {
+    "@type": "Person",
+    "name": "Your Name"
+  },
+  "datePublished": "2024-01-01",
+  "image": "https://example.com/image.jpg"
+}
+&lt;/script&gt;</code></pre>
+            </article>
+        </section>
+
+        <!-- 8. OTHER HTML5 FEATURES -->
+        <section>
+            <h2>8. Other HTML5 Features</h2>
+            <article>
+                <h3>Data Attributes</h3>
+                <pre><code>&lt;div data-user-id="12345" data-role="admin"&gt;User&lt;/div&gt;
+
+// JavaScript access
+const div = document.querySelector('div');
+console.log(div.dataset.userId);    // "12345"
+console.log(div.dataset.role);      // "admin"</code></pre>
+
+                <h3>Content Editable</h3>
+                <div contenteditable="true" style="border: 1px solid #ddd; padding: 10px; min-height: 50px;">
+                    This content is editable! Click and type here.
+                </div>
+                <pre><code>&lt;div contenteditable="true"&gt;Editable content&lt;/div&gt;</code></pre>
+
+                <h3>Progress Bar</h3>
+                <label for="file">Download progress:</label>
+                <progress id="file" value="70" max="100">70%</progress>
+                <pre><code>&lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;</code></pre>
+
+                <h3>Meter</h3>
+                <label for="fuel">Fuel level:</label>
+                <meter id="fuel" min="0" max="100" low="25" high="75" optimum="100" value="60"></meter>
+                <pre><code>&lt;meter min="0" max="100" value="60"&gt;&lt;/meter&gt;</code></pre>
+
+                <h3>Details & Summary</h3>
+                <details open>
+                    <summary>HTML5 New Features</summary>
+                    <ul>
+                        <li>Canvas & SVG</li>
+                        <li>Web Storage</li>
+                        <li>Geolocation</li>
+                        <li>Drag & Drop</li>
+                        <li>Semantic Elements</li>
+                    </ul>
+                </details>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 HTML Advanced Guide</p>
+    </footer>
+
+    <style>
+        .storage-demo {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .storage-demo input {
+            padding: 8px;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        .storage-demo button {
+            margin: 5px;
+        }
+
+        .storage-demo p {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .drag-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .draggable {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            cursor: move;
+            border-radius: 5px;
+            user-select: none;
+        }
+
+        .drop-zone {
+            border: 2px dashed #95a5a6;
+            padding: 20px;
+            min-width: 150px;
+            min-height: 80px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drop-zone:hover {
+            background-color: #ecf0f1;
+        }
+    </style>
+</body>
+</html>

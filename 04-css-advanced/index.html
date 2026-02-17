@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS - Complete Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Advanced CSS - Complete Guide</h1>
+        <p>Master advanced CSS techniques and modern features</p>
+    </header>
+
+    <nav class="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#pseudo-classes">Pseudo-classes</a></li>
+            <li><a href="#pseudo-elements">Pseudo-elements</a></li>
+            <li><a href="#transforms">Transforms</a></li>
+            <li><a href="#filters">Filters</a></li>
+            <li><a href="#variables">CSS Variables</a></li>
+            <li><a href="#calc">Calc Function</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <!-- Pseudo-classes Section -->
+        <section id="pseudo-classes" class="section">
+            <h2>1. Pseudo-classes</h2>
+
+            <div class="example-group">
+                <h3>Link and User Action Pseudo-classes</h3>
+                <div class="example">
+                    <a href="#" class="demo-link">Hover over me</a>
+                    <a href="#" class="demo-link visited-link">Visited link</a>
+                    <a href="#" class="demo-link active-link">Click and hold me</a>
+                </div>
+                <div class="code-display">
+                    <pre>
+a:link { color: blue; }
+a:visited { color: purple; }
+a:hover { color: red; }
+a:active { color: green; }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Form Pseudo-classes</h3>
+                <div class="example">
+                    <form class="demo-form">
+                        <input type="text" placeholder="Focus on me" class="form-input">
+                        <input type="text" placeholder="Disabled input" disabled class="form-input">
+                        <input type="checkbox" id="check1"> <label for="check1">Checkbox</label>
+                        <input type="radio" id="radio1" name="radio"> <label for="radio1">Radio button</label>
+                    </form>
+                </div>
+                <div class="code-display">
+                    <pre>
+input:focus { border-color: blue; }
+input:disabled { opacity: 0.5; }
+input:checked { accent-color: green; }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Structural Pseudo-classes</h3>
+                <div class="example">
+                    <ul class="demo-list">
+                        <li>First child (styled)</li>
+                        <li>Second child</li>
+                        <li>Third child</li>
+                        <li>Fourth child (even)</li>
+                        <li>Last child (styled)</li>
+                    </ul>
+                </div>
+                <div class="code-display">
+                    <pre>
+li:first-child { color: red; }
+li:last-child { color: blue; }
+li:nth-child(even) { background: #f0f0f0; }
+li:nth-child(odd) { background: white; }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>nth-child Advanced Patterns</h3>
+                <div class="example">
+                    <div class="grid-demo">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                        <div class="grid-item">7</div>
+                        <div class="grid-item">8</div>
+                        <div class="grid-item">9</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+/* Every 3rd item */
+.grid-item:nth-child(3n) { background: coral; }
+
+/* First 3 items */
+.grid-item:nth-child(-n+3) { border: 2px solid blue; }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>:not() Pseudo-class</h3>
+                <div class="example">
+                    <p class="text-demo">Normal paragraph</p>
+                    <p class="text-demo special">Special paragraph (not styled)</p>
+                    <p class="text-demo">Another normal paragraph</p>
+                </div>
+                <div class="code-display">
+                    <pre>
+p:not(.special) {
+    color: blue;
+    font-weight: bold;
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>:is() and :where() Pseudo-classes</h3>
+                <div class="example">
+                    <div class="container-demo">
+                        <h3>Heading</h3>
+                        <p>Paragraph text</p>
+                        <span>Span text</span>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+/* Instead of writing multiple selectors */
+.container h3,
+.container p,
+.container span { color: purple; }
+
+/* Use :is() */
+.container :is(h3, p, span) { color: purple; }
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pseudo-elements Section -->
+        <section id="pseudo-elements" class="section">
+            <h2>2. Pseudo-elements</h2>
+
+            <div class="example-group">
+                <h3>::before and ::after</h3>
+                <div class="example">
+                    <p class="quote-text">This is a quote with decorative elements</p>
+                    <div class="notification-badge">Messages</div>
+                    <button class="icon-button">Download</button>
+                </div>
+                <div class="code-display">
+                    <pre>
+.quote-text::before {
+    content: "\201C"; /* Opening quote */
+}
+.quote-text::after {
+    content: "\201D"; /* Closing quote */
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>::first-line and ::first-letter</h3>
+                <div class="example">
+                    <p class="article-text">
+                        This is the first letter. This is an example of styling the first line
+                        and first letter of a paragraph. The first letter is larger and has a
+                        different color, while the first line is bold and has increased letter spacing.
+                    </p>
+                </div>
+                <div class="code-display">
+                    <pre>
+p::first-letter {
+    font-size: 3em;
+    color: #e74c3c;
+    float: left;
+    line-height: 1;
+    margin-right: 5px;
+}
+
+p::first-line {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>::selection</h3>
+                <div class="example">
+                    <p class="selectable-text">Select this text to see custom selection styling!</p>
+                </div>
+                <div class="code-display">
+                    <pre>
+::selection {
+    background: #667eea;
+    color: white;
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>::placeholder</h3>
+                <div class="example">
+                    <input type="text" placeholder="Custom styled placeholder" class="styled-placeholder">
+                </div>
+                <div class="code-display">
+                    <pre>
+input::placeholder {
+    color: #9b59b6;
+    font-style: italic;
+    opacity: 1;
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Creating Shapes with Pseudo-elements</h3>
+                <div class="example shapes-demo">
+                    <div class="arrow-box">Box with arrow</div>
+                    <div class="ribbon">Ribbon Banner</div>
+                    <div class="tooltip-demo">Hover me
+                        <span class="tooltip">This is a tooltip</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transforms Section -->
+        <section id="transforms" class="section">
+            <h2>3. CSS Transforms</h2>
+
+            <div class="example-group">
+                <h3>2D Transforms</h3>
+                <div class="example transform-grid">
+                    <div class="transform-box translate-demo">
+                        <span>Translate</span>
+                    </div>
+                    <div class="transform-box rotate-demo">
+                        <span>Rotate</span>
+                    </div>
+                    <div class="transform-box scale-demo">
+                        <span>Scale</span>
+                    </div>
+                    <div class="transform-box skew-demo">
+                        <span>Skew</span>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+transform: translate(50px, 20px);
+transform: rotate(45deg);
+transform: scale(1.5);
+transform: skew(20deg, 10deg);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Transform Origin</h3>
+                <div class="example origin-demo">
+                    <div class="origin-box origin-center">Center Origin</div>
+                    <div class="origin-box origin-left">Left Origin</div>
+                    <div class="origin-box origin-corner">Corner Origin</div>
+                </div>
+                <div class="code-display">
+                    <pre>
+transform-origin: center; /* default */
+transform-origin: left center;
+transform-origin: top left;
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>3D Transforms</h3>
+                <div class="example transform-3d-grid">
+                    <div class="transform-3d-box rotateX-demo">
+                        <span>RotateX</span>
+                    </div>
+                    <div class="transform-3d-box rotateY-demo">
+                        <span>RotateY</span>
+                    </div>
+                    <div class="transform-3d-box rotateZ-demo">
+                        <span>RotateZ</span>
+                    </div>
+                    <div class="transform-3d-box translateZ-demo">
+                        <span>TranslateZ</span>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+transform: rotateX(45deg);
+transform: rotateY(45deg);
+transform: rotateZ(45deg);
+transform: translateZ(50px);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Multiple Transforms</h3>
+                <div class="example">
+                    <div class="multiple-transform-box">
+                        Hover for multiple transforms
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+transform: translate(50px, 0) rotate(20deg) scale(1.2);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Perspective</h3>
+                <div class="example perspective-demo">
+                    <div class="perspective-box">3D Card</div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.parent {
+    perspective: 1000px;
+}
+
+.child:hover {
+    transform: rotateY(180deg);
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section id="filters" class="section">
+            <h2>4. CSS Filters</h2>
+
+            <div class="example-group">
+                <h3>Filter Effects</h3>
+                <div class="example filters-grid">
+                    <div class="filter-box filter-blur">
+                        <div class="filter-content">Blur</div>
+                    </div>
+                    <div class="filter-box filter-brightness">
+                        <div class="filter-content">Brightness</div>
+                    </div>
+                    <div class="filter-box filter-contrast">
+                        <div class="filter-content">Contrast</div>
+                    </div>
+                    <div class="filter-box filter-grayscale">
+                        <div class="filter-content">Grayscale</div>
+                    </div>
+                    <div class="filter-box filter-hue-rotate">
+                        <div class="filter-content">Hue Rotate</div>
+                    </div>
+                    <div class="filter-box filter-invert">
+                        <div class="filter-content">Invert</div>
+                    </div>
+                    <div class="filter-box filter-saturate">
+                        <div class="filter-content">Saturate</div>
+                    </div>
+                    <div class="filter-box filter-sepia">
+                        <div class="filter-content">Sepia</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+filter: blur(5px);
+filter: brightness(150%);
+filter: contrast(200%);
+filter: grayscale(100%);
+filter: hue-rotate(90deg);
+filter: invert(100%);
+filter: saturate(200%);
+filter: sepia(100%);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Drop Shadow Filter</h3>
+                <div class="example">
+                    <div class="drop-shadow-demo">
+                        <div class="drop-shadow-box">Drop Shadow</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Multiple Filters</h3>
+                <div class="example">
+                    <div class="multiple-filters-demo">
+                        Hover for multiple filters
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+filter: brightness(120%) contrast(120%) saturate(120%);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Backdrop Filter</h3>
+                <div class="example backdrop-demo">
+                    <div class="backdrop-box">Glassmorphism Effect</div>
+                </div>
+                <div class="code-display">
+                    <pre>
+backdrop-filter: blur(10px) brightness(110%);
+background: rgba(255, 255, 255, 0.3);
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS Variables Section -->
+        <section id="variables" class="section">
+            <h2>5. CSS Variables (Custom Properties)</h2>
+
+            <div class="example-group">
+                <h3>Defining and Using Variables</h3>
+                <div class="example">
+                    <div class="variable-demo">
+                        <div class="var-box var-primary">Primary Color</div>
+                        <div class="var-box var-secondary">Secondary Color</div>
+                        <div class="var-box var-accent">Accent Color</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+}
+
+.var-primary {
+    background: var(--primary-color);
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Variable with Fallback</h3>
+                <div class="example">
+                    <div class="fallback-demo">
+                        Uses fallback value
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+color: var(--undefined-color, #333);
+/* If --undefined-color doesn't exist, use #333 */
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Dynamic Theme Switching</h3>
+                <div class="example">
+                    <div class="theme-switcher">
+                        <button onclick="setTheme('light')" class="theme-btn">Light</button>
+                        <button onclick="setTheme('dark')" class="theme-btn">Dark</button>
+                        <button onclick="setTheme('blue')" class="theme-btn">Blue</button>
+                    </div>
+                    <div class="themed-content" id="themedContent">
+                        <h3>Themed Content</h3>
+                        <p>Click buttons above to change theme</p>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+[data-theme="dark"] {
+    --bg-color: #333;
+    --text-color: white;
+}
+
+.themed-content {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Variables in Calculations</h3>
+                <div class="example">
+                    <div class="calc-var-demo">
+                        <div class="calc-var-box">Variable in calc()</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+:root {
+    --base-padding: 20px;
+}
+
+.box {
+    padding: calc(var(--base-padding) * 2);
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calc Function Section -->
+        <section id="calc" class="section">
+            <h2>6. Calc() Function</h2>
+
+            <div class="example-group">
+                <h3>Basic Calculations</h3>
+                <div class="example">
+                    <div class="calc-demo calc-width">
+                        width: calc(100% - 40px)
+                    </div>
+                    <div class="calc-demo calc-mixed">
+                        width: calc(50% + 100px)
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+width: calc(100% - 40px);
+width: calc(50% + 100px);
+width: calc(100vw - 20px);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Responsive Font Sizes</h3>
+                <div class="example">
+                    <p class="calc-font">
+                        This text uses calc() for responsive sizing: calc(16px + 1vw)
+                    </p>
+                </div>
+                <div class="code-display">
+                    <pre>
+font-size: calc(16px + 1vw);
+/* Grows with viewport width */
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Complex Calculations</h3>
+                <div class="example">
+                    <div class="calc-complex">
+                        Complex calc example
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+width: calc((100% - 60px) / 3);
+padding: calc(20px * 2 + 10px);
+margin: calc(100vh / 4 - 50px);
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Calc with CSS Variables</h3>
+                <div class="example">
+                    <div class="calc-var-example">
+                        calc() with variables
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+:root {
+    --base-size: 100px;
+    --multiplier: 2;
+}
+
+.box {
+    width: calc(var(--base-size) * var(--multiplier));
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Practical Use Cases</h3>
+                <div class="example calc-practical">
+                    <div class="sidebar">Sidebar</div>
+                    <div class="main-content">
+                        Main Content: calc(100% - 250px)
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.sidebar {
+    width: 250px;
+}
+
+.main-content {
+    width: calc(100% - 250px);
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>Advanced CSS Complete Guide - Master Modern CSS Techniques</p>
+    </footer>
+
+    <script>
+        function setTheme(theme) {
+            document.getElementById('themedContent').setAttribute('data-theme', theme);
+        }
+    </script>
+</body>
+</html>

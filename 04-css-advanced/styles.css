@@ -1,0 +1,982 @@
+/* Advanced CSS - Complete Stylesheet */
+
+/* CSS Variables */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --white: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --base-padding: 20px;
+    --base-size: 100px;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.main-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Table of Contents */
+.table-of-contents {
+    background: var(--white);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.table-of-contents h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.table-of-contents li a {
+    display: block;
+    padding: 10px;
+    background: #f8f9fa;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.table-of-contents li a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* Main Content */
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    background: var(--white);
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.section h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.example-group {
+    margin-bottom: 35px;
+}
+
+.example-group h3 {
+    color: #555;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.example {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.code-display {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.code-display pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* 1. PSEUDO-CLASSES SECTION */
+
+/* Link pseudo-classes */
+.demo-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    background: #3498db;
+    color: white;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.demo-link:hover {
+    background: #e74c3c;
+    transform: scale(1.05);
+}
+
+.demo-link:active {
+    background: #27ae60;
+    transform: scale(0.95);
+}
+
+.demo-link:visited {
+    background: #9b59b6;
+}
+
+/* Form pseudo-classes */
+.demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f0f0f0;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    accent-color: #27ae60;
+}
+
+/* Structural pseudo-classes */
+.demo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.demo-list li {
+    padding: 15px;
+    margin: 5px 0;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.demo-list li:first-child {
+    color: #e74c3c;
+    font-weight: bold;
+    border-left: 4px solid #e74c3c;
+}
+
+.demo-list li:last-child {
+    color: #3498db;
+    font-weight: bold;
+    border-left: 4px solid #3498db;
+}
+
+.demo-list li:nth-child(even) {
+    background: #f0f0f0;
+}
+
+.demo-list li:nth-child(odd) {
+    background: white;
+}
+
+.demo-list li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* nth-child patterns */
+.grid-demo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grid-item {
+    padding: 30px;
+    background: #3498db;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.grid-item:nth-child(3n) {
+    background: #e74c3c;
+}
+
+.grid-item:nth-child(-n+3) {
+    border: 3px solid #f39c12;
+}
+
+/* :not() pseudo-class */
+.text-demo {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.text-demo:not(.special) {
+    color: #3498db;
+    font-weight: bold;
+    background: #e3f2fd;
+}
+
+.text-demo.special {
+    background: #fff3cd;
+    font-style: italic;
+}
+
+/* :is() demonstration */
+.container-demo :is(h3, p, span) {
+    color: #9b59b6;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+/* 2. PSEUDO-ELEMENTS SECTION */
+
+/* ::before and ::after */
+.quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    padding: 20px;
+    background: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    position: relative;
+}
+
+.quote-text::before {
+    content: "\201C";
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+.quote-text::after {
+    content: "\201D";
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    right: 10px;
+    bottom: -20px;
+}
+
+.notification-badge {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.notification-badge::after {
+    content: "3";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.icon-button {
+    padding: 10px 20px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 40px;
+}
+
+.icon-button::before {
+    content: "⬇";
+    position: absolute;
+    left: 15px;
+    font-size: 1.2rem;
+}
+
+/* ::first-line and ::first-letter */
+.article-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.article-text::first-letter {
+    font-size: 3em;
+    color: #e74c3c;
+    float: left;
+    line-height: 1;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.article-text::first-line {
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+}
+
+/* ::selection */
+.selectable-text {
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    user-select: all;
+}
+
+.selectable-text::selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ::placeholder */
+.styled-placeholder {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.styled-placeholder::placeholder {
+    color: #9b59b6;
+    font-style: italic;
+    opacity: 1;
+}
+
+/* Shapes with pseudo-elements */
+.shapes-demo {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.arrow-box {
+    position: relative;
+    background: #3498db;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+}
+
+.arrow-box::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid #3498db;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.ribbon {
+    position: relative;
+    background: #e74c3c;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.ribbon::before {
+    left: 0;
+    border-width: 0 0 10px 15px;
+    border-color: transparent transparent transparent #c0392b;
+}
+
+.ribbon::after {
+    right: 0;
+    border-width: 0 15px 10px 0;
+    border-color: transparent #c0392b transparent transparent;
+}
+
+.tooltip-demo {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #9b59b6;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2c3e50 transparent transparent transparent;
+}
+
+.tooltip-demo:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 3. TRANSFORMS SECTION */
+
+/* 2D Transforms */
+.transform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.transform-box {
+    height: 150px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.translate-demo:hover {
+    transform: translate(20px, -10px);
+}
+
+.rotate-demo:hover {
+    transform: rotate(15deg);
+}
+
+.scale-demo:hover {
+    transform: scale(1.2);
+}
+
+.skew-demo:hover {
+    transform: skew(10deg, 5deg);
+}
+
+/* Transform Origin */
+.origin-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.origin-box {
+    height: 100px;
+    background: #e74c3c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.origin-center {
+    transform-origin: center;
+}
+
+.origin-center:hover {
+    transform: rotate(45deg);
+}
+
+.origin-left {
+    transform-origin: left center;
+}
+
+.origin-left:hover {
+    transform: rotate(45deg);
+}
+
+.origin-corner {
+    transform-origin: top left;
+}
+
+.origin-corner:hover {
+    transform: rotate(45deg);
+}
+
+/* 3D Transforms */
+.transform-3d-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.transform-3d-box {
+    height: 150px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.5s;
+}
+
+.rotateX-demo:hover {
+    transform: rotateX(45deg);
+}
+
+.rotateY-demo:hover {
+    transform: rotateY(45deg);
+}
+
+.rotateZ-demo:hover {
+    transform: rotateZ(45deg);
+}
+
+.translateZ-demo:hover {
+    transform: translateZ(50px);
+}
+
+/* Multiple Transforms */
+.multiple-transform-box {
+    padding: 30px;
+    background: #27ae60;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.4s;
+}
+
+.multiple-transform-box:hover {
+    transform: translate(20px, -10px) rotate(5deg) scale(1.1);
+}
+
+/* Perspective */
+.perspective-demo {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.perspective-box {
+    width: 200px;
+    height: 250px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.perspective-box:hover {
+    transform: rotateY(20deg) rotateX(10deg);
+}
+
+/* 4. FILTERS SECTION */
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.filter-box {
+    height: 120px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    transition: filter 0.3s;
+}
+
+.filter-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.filter-blur:hover {
+    filter: blur(3px);
+}
+
+.filter-brightness:hover {
+    filter: brightness(150%);
+}
+
+.filter-contrast:hover {
+    filter: contrast(200%);
+}
+
+.filter-grayscale:hover {
+    filter: grayscale(100%);
+}
+
+.filter-hue-rotate:hover {
+    filter: hue-rotate(180deg);
+}
+
+.filter-invert:hover {
+    filter: invert(100%);
+}
+
+.filter-saturate:hover {
+    filter: saturate(300%);
+}
+
+.filter-sepia:hover {
+    filter: sepia(100%);
+}
+
+/* Drop Shadow */
+.drop-shadow-demo {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.drop-shadow-box {
+    padding: 30px 50px;
+    background: white;
+    color: var(--primary-color);
+    font-weight: bold;
+    border-radius: 8px;
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* Multiple Filters */
+.multiple-filters-demo {
+    padding: 40px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    transition: filter 0.3s;
+}
+
+.multiple-filters-demo:hover {
+    filter: brightness(120%) contrast(120%) saturate(150%);
+}
+
+/* Backdrop Filter */
+.backdrop-demo {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backdrop-box {
+    padding: 30px 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px) brightness(110%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* 5. CSS VARIABLES SECTION */
+
+.variable-demo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.var-box {
+    padding: 30px 15px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.var-primary {
+    background: var(--primary-color);
+}
+
+.var-secondary {
+    background: var(--secondary-color);
+}
+
+.var-accent {
+    background: var(--accent-color);
+}
+
+/* Fallback demo */
+.fallback-demo {
+    padding: 30px;
+    background: var(--undefined-color, #e74c3c);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Theme switching */
+.theme-switcher {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.theme-btn {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.themed-content {
+    padding: 30px;
+    background: var(--bg-color, white);
+    color: var(--text-color, black);
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.themed-content[data-theme="dark"] {
+    --bg-color: #2c3e50;
+    --text-color: white;
+}
+
+.themed-content[data-theme="blue"] {
+    --bg-color: #3498db;
+    --text-color: white;
+}
+
+/* Variables in calculations */
+.calc-var-demo {
+    display: flex;
+    justify-content: center;
+}
+
+.calc-var-box {
+    padding: calc(var(--base-padding) * 2);
+    background: #27ae60;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* 6. CALC FUNCTION SECTION */
+
+.calc-demo {
+    padding: 20px;
+    margin: 10px 0;
+    background: #3498db;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.calc-width {
+    width: calc(100% - 40px);
+}
+
+.calc-mixed {
+    width: calc(50% + 50px);
+}
+
+/* Responsive font */
+.calc-font {
+    font-size: calc(16px + 0.5vw);
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* Complex calculation */
+.calc-complex {
+    width: calc((100% - 40px) / 2);
+    padding: calc(10px * 2 + 5px);
+    background: #e74c3c;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+/* Calc with variables */
+.calc-var-example {
+    width: calc(var(--base-size) * 2);
+    padding: 30px;
+    background: #9b59b6;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* Practical use case */
+.calc-practical {
+    display: flex;
+    gap: 20px;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sidebar {
+    width: 200px;
+    background: #34495e;
+    color: white;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.main-content {
+    width: calc(100% - 220px);
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+/* Footer */
+.main-footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .transform-grid,
+    .filters-grid,
+    .variable-demo {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-practical {
+        flex-direction: column;
+    }
+
+    .sidebar,
+    .main-content {
+        width: 100%;
+    }
+}

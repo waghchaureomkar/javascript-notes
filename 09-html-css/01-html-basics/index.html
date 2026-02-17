@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML Basics - Complete Guide with Examples">
+    <meta name="keywords" content="HTML, HTML5, Web Development, Interview Prep">
+    <meta name="author" content="Your Name">
+    <title>HTML Basics - Complete Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>HTML Basics - Complete Guide</h1>
+        <nav>
+            <ul>
+                <li><a href="#structure">HTML Structure</a></li>
+                <li><a href="#text">Text Elements</a></li>
+                <li><a href="#links">Links & Images</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#tables">Tables</a></li>
+                <li><a href="#forms">Forms</a></li>
+                <li><a href="#semantic">Semantic HTML</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. HTML STRUCTURE -->
+        <section id="structure">
+            <h2>1. HTML Document Structure</h2>
+            <article>
+                <h3>Basic Structure</h3>
+                <pre><code>&lt;!DOCTYPE html&gt; - Declares HTML5 document
+&lt;html&gt; - Root element
+&lt;head&gt; - Contains metadata
+&lt;body&gt; - Contains visible content</code></pre>
+
+                <h3>Important Meta Tags</h3>
+                <ul>
+                    <li><code>&lt;meta charset="UTF-8"&gt;</code> - Character encoding</li>
+                    <li><code>&lt;meta name="viewport"...&gt;</code> - Responsive design</li>
+                    <li><code>&lt;meta name="description"...&gt;</code> - SEO description</li>
+                    <li><code>&lt;meta name="keywords"...&gt;</code> - SEO keywords</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- 2. TEXT ELEMENTS -->
+        <section id="text">
+            <h2>2. Text Elements</h2>
+            <article>
+                <h3>Headings (h1 to h6)</h3>
+                <h1>This is H1 (Most Important)</h1>
+                <h2>This is H2</h2>
+                <h3>This is H3</h3>
+                <h4>This is H4</h4>
+                <h5>This is H5</h5>
+                <h6>This is H6 (Least Important)</h6>
+
+                <h3>Paragraph & Text Formatting</h3>
+                <p>This is a <strong>paragraph</strong> with <em>different</em> text formats.</p>
+                <p><b>Bold text</b> vs <strong>Strong text (semantic)</strong></p>
+                <p><i>Italic text</i> vs <em>Emphasized text (semantic)</em></p>
+                <p><u>Underlined text</u></p>
+                <p><mark>Highlighted text</mark></p>
+                <p><small>Small text</small></p>
+                <p><del>Deleted text</del> and <ins>Inserted text</ins></p>
+                <p>H<sub>2</sub>O (Subscript) and X<sup>2</sup> (Superscript)</p>
+                <p><code>Inline code: console.log('Hello')</code></p>
+                <pre>Preformatted text
+    preserves    spaces
+        and line breaks</pre>
+                <blockquote>
+                    This is a blockquote - used for quotations
+                </blockquote>
+                <p><abbr title="HyperText Markup Language">HTML</abbr> - Abbreviation with tooltip</p>
+            </article>
+        </section>
+
+        <!-- 3. LINKS & IMAGES -->
+        <section id="links">
+            <h2>3. Links & Images</h2>
+            <article>
+                <h3>Links (Anchor Tags)</h3>
+                <a href="https://www.google.com">External Link</a><br>
+                <a href="https://www.google.com" target="_blank">Open in New Tab</a><br>
+                <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Secure External Link</a><br>
+                <a href="#top">Internal Link (Jump to section)</a><br>
+                <a href="mailto:email@example.com">Email Link</a><br>
+                <a href="tel:+1234567890">Phone Link</a><br>
+                <a href="file.pdf" download>Download Link</a><br>
+
+                <h3>Images</h3>
+                <img src="image.jpg" alt="Description of image" width="300" height="200">
+                <img src="image.jpg" alt="Responsive image" style="max-width: 100%; height: auto;">
+
+                <h3>Figure & Figcaption (Semantic)</h3>
+                <figure>
+                    <img src="chart.jpg" alt="Sales Chart">
+                    <figcaption>Fig 1. Sales Data for 2024</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- 4. LISTS -->
+        <section id="lists">
+            <h2>4. Lists</h2>
+            <article>
+                <h3>Unordered List</h3>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3
+                        <ul>
+                            <li>Nested Item 1</li>
+                            <li>Nested Item 2</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Ordered List</h3>
+                <ol>
+                    <li>First Item</li>
+                    <li>Second Item</li>
+                    <li>Third Item</li>
+                </ol>
+
+                <ol type="A">
+                    <li>Type A</li>
+                    <li>Type B</li>
+                </ol>
+
+                <ol start="5">
+                    <li>Starting from 5</li>
+                    <li>Number 6</li>
+                </ol>
+
+                <h3>Description List</h3>
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>HyperText Markup Language</dd>
+                    <dt>CSS</dt>
+                    <dd>Cascading Style Sheets</dd>
+                    <dt>JavaScript</dt>
+                    <dd>Programming language for web</dd>
+                </dl>
+            </article>
+        </section>
+
+        <!-- 5. TABLES -->
+        <section id="tables">
+            <h2>5. Tables</h2>
+            <article>
+                <h3>Basic Table</h3>
+                <table border="1">
+                    <caption>Student Data</caption>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>20</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>Jane</td>
+                            <td>22</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <td>Bob</td>
+                            <td>21</td>
+                            <td>A+</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total Students</td>
+                            <td>3</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <h3>Table with Colspan & Rowspan</h3>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                        <th colspan="2">Subjects</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">John</td>
+                        <td>Math</td>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <td>Science</td>
+                        <td>85</td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+
+        <!-- 6. FORMS -->
+        <section id="forms">
+            <h2>6. Forms</h2>
+            <article>
+                <h3>Basic Form Elements</h3>
+                <form action="/submit" method="POST">
+                    <!-- Text Input -->
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <br><br>
+
+                    <!-- Email -->
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    <br><br>
+
+                    <!-- Password -->
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" minlength="8" required>
+                    <br><br>
+
+                    <!-- Number -->
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="1" max="120">
+                    <br><br>
+
+                    <!-- Date -->
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob">
+                    <br><br>
+
+                    <!-- Radio Buttons -->
+                    <p>Gender:</p>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                    <br><br>
+
+                    <!-- Checkbox -->
+                    <p>Hobbies:</p>
+                    <input type="checkbox" id="reading" name="hobbies" value="reading">
+                    <label for="reading">Reading</label>
+                    <input type="checkbox" id="coding" name="hobbies" value="coding">
+                    <label for="coding">Coding</label>
+                    <input type="checkbox" id="gaming" name="hobbies" value="gaming">
+                    <label for="gaming">Gaming</label>
+                    <br><br>
+
+                    <!-- Select Dropdown -->
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">Select Country</option>
+                        <option value="india">India</option>
+                        <option value="usa">USA</option>
+                        <option value="uk">UK</option>
+                    </select>
+                    <br><br>
+
+                    <!-- Textarea -->
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message"></textarea>
+                    <br><br>
+
+                    <!-- File Upload -->
+                    <label for="file">Upload File:</label>
+                    <input type="file" id="file" name="file" accept=".jpg,.png,.pdf">
+                    <br><br>
+
+                    <!-- Range -->
+                    <label for="volume">Volume:</label>
+                    <input type="range" id="volume" name="volume" min="0" max="100">
+                    <br><br>
+
+                    <!-- Color -->
+                    <label for="color">Favorite Color:</label>
+                    <input type="color" id="color" name="color">
+                    <br><br>
+
+                    <!-- Submit & Reset -->
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                    <input type="button" value="Custom Button" onclick="alert('Clicked!')">
+                </form>
+
+                <h3>Form Attributes</h3>
+                <ul>
+                    <li><code>required</code> - Makes field mandatory</li>
+                    <li><code>readonly</code> - Cannot be edited</li>
+                    <li><code>disabled</code> - Field is disabled</li>
+                    <li><code>placeholder</code> - Hint text</li>
+                    <li><code>autofocus</code> - Auto focus on page load</li>
+                    <li><code>autocomplete</code> - Enable/disable autocomplete</li>
+                    <li><code>pattern</code> - Regex validation</li>
+                    <li><code>maxlength</code> - Maximum characters</li>
+                    <li><code>min, max</code> - For number/date inputs</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- 7. SEMANTIC HTML -->
+        <section id="semantic">
+            <h2>7. Semantic HTML5 Elements</h2>
+            <article>
+                <h3>Why Semantic HTML?</h3>
+                <p>Semantic HTML provides meaning to web content, improving:</p>
+                <ul>
+                    <li>SEO (Search Engine Optimization)</li>
+                    <li>Accessibility (Screen readers)</li>
+                    <li>Code Readability</li>
+                    <li>Maintainability</li>
+                </ul>
+
+                <h3>Semantic Elements</h3>
+                <dl>
+                    <dt><code>&lt;header&gt;</code></dt>
+                    <dd>Header content, navigation, logo</dd>
+
+                    <dt><code>&lt;nav&gt;</code></dt>
+                    <dd>Navigation links</dd>
+
+                    <dt><code>&lt;main&gt;</code></dt>
+                    <dd>Main content (only one per page)</dd>
+
+                    <dt><code>&lt;section&gt;</code></dt>
+                    <dd>Thematic grouping of content</dd>
+
+                    <dt><code>&lt;article&gt;</code></dt>
+                    <dd>Independent, self-contained content</dd>
+
+                    <dt><code>&lt;aside&gt;</code></dt>
+                    <dd>Sidebar, related content</dd>
+
+                    <dt><code>&lt;footer&gt;</code></dt>
+                    <dd>Footer content, copyright, links</dd>
+
+                    <dt><code>&lt;figure&gt; & &lt;figcaption&gt;</code></dt>
+                    <dd>Images with captions</dd>
+
+                    <dt><code>&lt;details&gt; & &lt;summary&gt;</code></dt>
+                    <dd>Collapsible content</dd>
+
+                    <dt><code>&lt;time&gt;</code></dt>
+                    <dd>Date and time</dd>
+
+                    <dt><code>&lt;mark&gt;</code></dt>
+                    <dd>Highlighted text</dd>
+                </dl>
+
+                <h3>Example: Collapsible Content</h3>
+                <details>
+                    <summary>Click to expand</summary>
+                    <p>This content is hidden by default and can be toggled.</p>
+                </details>
+
+                <h3>Non-Semantic vs Semantic</h3>
+                <pre><code>❌ Non-Semantic:
+&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;div class="content"&gt;...&lt;/div&gt;
+
+✅ Semantic:
+&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;</code></pre>
+            </article>
+        </section>
+
+        <!-- 8. OTHER IMPORTANT ELEMENTS -->
+        <section>
+            <h2>8. Other Important Elements</h2>
+            <article>
+                <h3>Comments</h3>
+                <!-- This is an HTML comment (not visible in browser) -->
+
+                <h3>Line Break & Horizontal Rule</h3>
+                <p>Line 1<br>Line 2</p>
+                <hr>
+                <p>Content after horizontal rule</p>
+
+                <h3>Div & Span</h3>
+                <div style="border: 1px solid black; padding: 10px;">
+                    <p>Div is a <strong>block-level</strong> element (takes full width)</p>
+                </div>
+                <p>Span is an <span style="color: red;">inline</span> element</p>
+
+                <h3>IFrame</h3>
+                <iframe src="https://www.example.com" width="500" height="300" title="Example"></iframe>
+
+                <h3>Audio & Video (HTML5)</h3>
+                <audio controls>
+                    <source src="audio.mp3" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+
+                <video width="400" controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support video.
+                </video>
+            </article>
+        </section>
+    </main>
+
+    <aside>
+        <h3>Quick Reference</h3>
+        <ul>
+            <li>Block elements: div, p, h1-h6, section, article</li>
+            <li>Inline elements: span, a, strong, em, code</li>
+            <li>Always use semantic HTML when possible</li>
+            <li>Use alt attribute for images (accessibility)</li>
+            <li>Label form inputs properly</li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>&copy; 2024 HTML Basics Guide. All rights reserved.</p>
+        <p><time datetime="2024-01-01">Last Updated: January 2024</time></p>
+    </footer>
+</body>
+</html>

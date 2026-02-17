@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layouts - Flexbox & Grid Complete Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>CSS Layouts - Flexbox & Grid</h1>
+        <p>Master modern CSS layout techniques</p>
+    </header>
+
+    <nav class="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#flexbox-basics">Flexbox Basics</a></li>
+            <li><a href="#flexbox-advanced">Flexbox Advanced</a></li>
+            <li><a href="#grid-basics">Grid Basics</a></li>
+            <li><a href="#grid-advanced">Grid Advanced</a></li>
+            <li><a href="#real-layouts">Real-World Layouts</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <!-- Flexbox Basics -->
+        <section id="flexbox-basics" class="section">
+            <h2>1. Flexbox Basics</h2>
+
+            <div class="example-group">
+                <h3>Display Flex</h3>
+                <div class="example">
+                    <div class="flex-container">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>.container { display: flex; }</pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Flex Direction</h3>
+                <div class="example">
+                    <h4>Row (default)</h4>
+                    <div class="flex-container flex-row">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Row Reverse</h4>
+                    <div class="flex-container flex-row-reverse">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Column</h4>
+                    <div class="flex-container flex-column">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Column Reverse</h4>
+                    <div class="flex-container flex-column-reverse">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+flex-direction: row;
+flex-direction: row-reverse;
+flex-direction: column;
+flex-direction: column-reverse;
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Justify Content (Main Axis)</h3>
+                <div class="example">
+                    <h4>Flex Start</h4>
+                    <div class="flex-container justify-start">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Center</h4>
+                    <div class="flex-container justify-center">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Flex End</h4>
+                    <div class="flex-container justify-end">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Space Between</h4>
+                    <div class="flex-container justify-between">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Space Around</h4>
+                    <div class="flex-container justify-around">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Space Evenly</h4>
+                    <div class="flex-container justify-evenly">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Align Items (Cross Axis)</h3>
+                <div class="example">
+                    <h4>Stretch (default)</h4>
+                    <div class="flex-container align-stretch">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Flex Start</h4>
+                    <div class="flex-container align-start">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Center</h4>
+                    <div class="flex-container align-center">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+
+                    <h4>Flex End</h4>
+                    <div class="flex-container align-end">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Flex Wrap</h3>
+                <div class="example">
+                    <h4>No Wrap (default)</h4>
+                    <div class="flex-container flex-nowrap">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                        <div class="flex-item">4</div>
+                        <div class="flex-item">5</div>
+                        <div class="flex-item">6</div>
+                    </div>
+
+                    <h4>Wrap</h4>
+                    <div class="flex-container flex-wrap">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                        <div class="flex-item">4</div>
+                        <div class="flex-item">5</div>
+                        <div class="flex-item">6</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flexbox Advanced -->
+        <section id="flexbox-advanced" class="section">
+            <h2>2. Flexbox Advanced</h2>
+
+            <div class="example-group">
+                <h3>Flex Grow</h3>
+                <div class="example">
+                    <div class="flex-container">
+                        <div class="flex-item flex-grow-1">flex-grow: 1</div>
+                        <div class="flex-item flex-grow-2">flex-grow: 2</div>
+                        <div class="flex-item flex-grow-1">flex-grow: 1</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.item { flex-grow: 1; } /* Takes available space */
+.item { flex-grow: 2; } /* Takes 2x space */
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Flex Shrink</h3>
+                <div class="example">
+                    <div class="flex-container flex-nowrap">
+                        <div class="flex-item flex-shrink-1" style="width: 200px">shrink: 1</div>
+                        <div class="flex-item flex-shrink-0" style="width: 200px">shrink: 0</div>
+                        <div class="flex-item flex-shrink-1" style="width: 200px">shrink: 1</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Flex Basis</h3>
+                <div class="example">
+                    <div class="flex-container">
+                        <div class="flex-item" style="flex-basis: 100px">basis: 100px</div>
+                        <div class="flex-item" style="flex-basis: 200px">basis: 200px</div>
+                        <div class="flex-item" style="flex-basis: 150px">basis: 150px</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Flex Shorthand</h3>
+                <div class="example">
+                    <div class="flex-container">
+                        <div class="flex-item" style="flex: 1">flex: 1</div>
+                        <div class="flex-item" style="flex: 2">flex: 2</div>
+                        <div class="flex-item" style="flex: 1">flex: 1</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+flex: 1; /* flex-grow: 1, flex-shrink: 1, flex-basis: 0 */
+flex: 0 0 100px; /* flex-grow, flex-shrink, flex-basis */
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Align Self</h3>
+                <div class="example">
+                    <div class="flex-container" style="height: 150px">
+                        <div class="flex-item">Normal</div>
+                        <div class="flex-item" style="align-self: flex-start">start</div>
+                        <div class="flex-item" style="align-self: center">center</div>
+                        <div class="flex-item" style="align-self: flex-end">end</div>
+                        <div class="flex-item" style="align-self: stretch">stretch</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Order Property</h3>
+                <div class="example">
+                    <div class="flex-container">
+                        <div class="flex-item" style="order: 3">1 (order: 3)</div>
+                        <div class="flex-item" style="order: 1">2 (order: 1)</div>
+                        <div class="flex-item" style="order: 2">3 (order: 2)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Gap Property</h3>
+                <div class="example">
+                    <div class="flex-container" style="gap: 20px">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.container {
+    display: flex;
+    gap: 20px; /* Space between items */
+}
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Basics -->
+        <section id="grid-basics" class="section">
+            <h2>3. CSS Grid Basics</h2>
+
+            <div class="example-group">
+                <h3>Display Grid</h3>
+                <div class="example">
+                    <div class="grid-container">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grid Template Columns</h3>
+                <div class="example">
+                    <h4>Fixed Widths</h4>
+                    <div class="grid-container grid-fixed">
+                        <div class="grid-item">100px</div>
+                        <div class="grid-item">200px</div>
+                        <div class="grid-item">150px</div>
+                    </div>
+
+                    <h4>Fractional Units (fr)</h4>
+                    <div class="grid-container grid-fr">
+                        <div class="grid-item">1fr</div>
+                        <div class="grid-item">2fr</div>
+                        <div class="grid-item">1fr</div>
+                    </div>
+
+                    <h4>Auto and Min-content</h4>
+                    <div class="grid-container grid-auto">
+                        <div class="grid-item">auto</div>
+                        <div class="grid-item">min-content</div>
+                        <div class="grid-item">max-content</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grid Gap</h3>
+                <div class="example">
+                    <div class="grid-container grid-gap">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item">5</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+grid-gap: 20px;
+/* or */
+gap: 20px;
+row-gap: 20px;
+column-gap: 20px;
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grid Lines</h3>
+                <div class="example">
+                    <div class="grid-container">
+                        <div class="grid-item grid-span-2">Spans 2 columns</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                        <div class="grid-item grid-span-rows">Spans 2 rows</div>
+                        <div class="grid-item">6</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.item {
+    grid-column: 1 / 3; /* Start at line 1, end before line 3 */
+    grid-row: 1 / 3;
+    /* or */
+    grid-column: span 2;
+    grid-row: span 2;
+}
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grid Template Areas</h3>
+                <div class="example">
+                    <div class="grid-areas">
+                        <div class="grid-item area-header">Header</div>
+                        <div class="grid-item area-sidebar">Sidebar</div>
+                        <div class="grid-item area-main">Main</div>
+                        <div class="grid-item area-footer">Footer</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+                    </pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Advanced -->
+        <section id="grid-advanced" class="section">
+            <h2>4. CSS Grid Advanced</h2>
+
+            <div class="example-group">
+                <h3>Auto-fit and Auto-fill</h3>
+                <div class="example">
+                    <h4>Auto-fit</h4>
+                    <div class="grid-container grid-autofit">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                    </div>
+
+                    <h4>Auto-fill</h4>
+                    <div class="grid-container grid-autofill">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Minmax Function</h3>
+                <div class="example">
+                    <div class="grid-container grid-minmax">
+                        <div class="grid-item">Min 100px, Max 1fr</div>
+                        <div class="grid-item">Min 100px, Max 1fr</div>
+                        <div class="grid-item">Min 100px, Max 1fr</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Justify and Align Items</h3>
+                <div class="example">
+                    <div class="grid-container grid-align-justify">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                    </div>
+                </div>
+                <div class="code-display">
+                    <pre>
+justify-items: center; /* Horizontal */
+align-items: center; /* Vertical */
+place-items: center; /* Both */
+                    </pre>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Justify and Align Content</h3>
+                <div class="example">
+                    <div class="grid-container grid-content-center">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Grid Auto Flow</h3>
+                <div class="example">
+                    <h4>Row (default)</h4>
+                    <div class="grid-container grid-auto-row">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item grid-span-2">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                    </div>
+
+                    <h4>Dense</h4>
+                    <div class="grid-container grid-auto-dense">
+                        <div class="grid-item">1</div>
+                        <div class="grid-item grid-span-2">2</div>
+                        <div class="grid-item">3</div>
+                        <div class="grid-item">4</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Layouts -->
+        <section id="real-layouts" class="section">
+            <h2>5. Real-World Layouts</h2>
+
+            <div class="example-group">
+                <h3>Holy Grail Layout (Flexbox)</h3>
+                <div class="example">
+                    <div class="holy-grail-flex">
+                        <header class="hg-header">Header</header>
+                        <div class="hg-body">
+                            <aside class="hg-sidebar">Sidebar</aside>
+                            <main class="hg-main">Main Content</main>
+                            <aside class="hg-aside">Aside</aside>
+                        </div>
+                        <footer class="hg-footer">Footer</footer>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Holy Grail Layout (Grid)</h3>
+                <div class="example">
+                    <div class="holy-grail-grid">
+                        <header class="hg-header">Header</header>
+                        <aside class="hg-sidebar">Sidebar</aside>
+                        <main class="hg-main">Main Content</main>
+                        <aside class="hg-aside">Aside</aside>
+                        <footer class="hg-footer">Footer</footer>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Card Grid Layout</h3>
+                <div class="example">
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Card 1</h3>
+                            <p>Card content here</p>
+                        </div>
+                        <div class="card">
+                            <h3>Card 2</h3>
+                            <p>Card content here</p>
+                        </div>
+                        <div class="card">
+                            <h3>Card 3</h3>
+                            <p>Card content here</p>
+                        </div>
+                        <div class="card">
+                            <h3>Card 4</h3>
+                            <p>Card content here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Sidebar Layout</h3>
+                <div class="example">
+                    <div class="sidebar-layout">
+                        <aside class="sidebar">Sidebar</aside>
+                        <main class="main-content">Main Content Area</main>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Centered Card</h3>
+                <div class="example">
+                    <div class="centered-card-container">
+                        <div class="centered-card">
+                            <h3>Centered Card</h3>
+                            <p>Perfectly centered both horizontally and vertically</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-group">
+                <h3>Magazine Layout</h3>
+                <div class="example">
+                    <div class="magazine-layout">
+                        <div class="magazine-item magazine-large">Large Feature</div>
+                        <div class="magazine-item">Article 1</div>
+                        <div class="magazine-item">Article 2</div>
+                        <div class="magazine-item magazine-wide">Wide Article</div>
+                        <div class="magazine-item">Article 3</div>
+                        <div class="magazine-item">Article 4</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>CSS Layouts Complete Guide - Master Flexbox and Grid</p>
+    </footer>
+</body>
+</html>
